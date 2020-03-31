@@ -10,7 +10,7 @@ This repository describes all necessary steps to install Hadoop on single node c
 
 1- Prepare Linux		       
 
-### Commands with root	       
+Commands with root	       
 
 	## Turnoff firewall
 		apt-get install firewalld  --install for debian users
@@ -84,13 +84,13 @@ This repository describes all necessary steps to install Hadoop on single node c
 		chown -R hdpuser:hdpuser /bigdata
 		chmod -R 770 /bigdata
 
-#########################################
-2- 	Intall JDK and Hadoop			         ##
-#########################################
-## 	Using Hadoop User (hdpuser)		     ##
-#########################################
-## 	Installing Java					           ##
-#########################################
+
+2- Intall JDK and Hadoop			         
+
+Using Hadoop User (hdpuser)		     
+
+Installing Java					           
+
 	## Download JDK version "jdk-8u191-Linux-x64.tar.gz", and follow installation steps:
 		cd /bigdata
 		
@@ -132,9 +132,9 @@ This repository describes all necessary steps to install Hadoop on single node c
 		sudo update-alternatives --set javac /bigdata/jdk1.8.0_191/bin/javac
 		java -version  ## To check
 			
-#########################################
-## 	Install Hadoop					           ##
-#########################################	
+
+Install Hadoop					     
+	
 	## Download Hadoop archive file "hadoop-3.1.1.tar.gz", and follow installation steps:
 		cd /bigdata
 		
@@ -396,17 +396,15 @@ This repository describes all necessary steps to install Hadoop on single node c
 		
 
 
-					##################################################################################
-					##			Install Hadoop with NameNode & DataNodes on Multi Nodes				          ##
-					##################################################################################					
+		##################################################################################
+		## 	Install Hadoop with NameNode & DataNodes on Multi Nodes	          	##
+		##################################################################################					
 
 
 
-#########################################
-1- 	Clone the vm created above		     ##
-#########################################
-## 	Commands with root				         ##
-#########################################
+
+1- Clone the vm created above	
+Commands with root				         
 	## Turnoff firewall
 		service firewalld status
 		service firewalld stop
@@ -450,9 +448,8 @@ This repository describes all necessary steps to install Hadoop on single node c
 			192.168.1.5		master-node
 			192.168.1.6		slave-node-1
 
-#########################################
-## 	Configure Hadoop				           ##
-#########################################
+Configure Hadoop				   
+
 	## Edit the workers file into the master-node server
 		vi workers  --write line for each DataNode server (in our case both server machines are considered DataNodes)
 			master-node  #(if you don't want this node to be DataNode, remove this line from the workers file)
@@ -489,9 +486,9 @@ This repository describes all necessary steps to install Hadoop on single node c
 		rm -rf /bigdata/HadoopData/namenode/*
 		rm -rf /bigdata/HadoopData/datanode/*
 
-#########################################
-2- 	Starting Hadoop					           ##
-#########################################
+
+2- Starting Hadoop					  
+
 	## Format the NameNode on master-node
 		hdfs namenode -format
 	
