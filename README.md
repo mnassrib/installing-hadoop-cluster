@@ -1,16 +1,16 @@
-# Installing Hadoop 3 single node and multi-node clusters on Debian 9
+# Installing Hadoop 3 on single node and multi-node clusters of Debian 9 VMs
 This repository describes all necessary steps to install Hadoop on single node cluster as well as multi node cluster of virtual machines with Debian 9.
 
-					##################################################################################
-					##		Install and Configure Hadoop with NameNode & DataNode on Single Node	    ##
-					##################################################################################
+		##################################################################################
+		##	Install and Configure Hadoop with NameNode & DataNode on Single Node    ##
+		##################################################################################
 		
 
 
 #########################################
-1- 	Prepare Linux					             ##
+1- 	Prepare Linux		       ##
 #########################################
-## 	Commands with root				         ##
+## 	Commands with root	       ##
 #########################################
 	## Turnoff firewall
 		apt-get install firewalld  --install for debian users
