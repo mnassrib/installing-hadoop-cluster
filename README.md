@@ -13,7 +13,7 @@
 > login as root user
 
 	## Turnoff firewall
-		apt-get install firewalld  --install for debian users
+		apt-get install firewalld  --install firewalld if it is not installed
 		service firewalld status
 		service firewalld stop
 		systemctl disable firewalld
@@ -43,13 +43,13 @@
 		For Debian OS users login as root and do the following:
 		apt-get install sudo
 		adduser hdpuser
-		usermod -aG sudo hdpuser  --To add a user to the sudo group. This can be done also according to (*)
-		getent group sudo  --To verify the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
+		usermod -aG sudo hdpuser  --to add a user to the sudo group. This can be done also according to (*)
+		getent group sudo  --to verify the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
 		deluser --remove-home username --To delete user
 		
 		## Verify Sudo Access in Debian
-			su - hdpuser  --Switch to the user account you just created
-			sudo whoami  --Run any command that requires superuser access. For example, this should tell you that you are the root.
+			su - hdpuser  --switch to the user account you just created
+			sudo whoami  --run any command that requires superuser access. For example, this should tell you that you are the root.
 
 	## Add Hadoop user to sudoers file (*), for more details see https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
 		## visudo -f /etc/sudoers
@@ -143,7 +143,7 @@
 		
 	## Setup Environment variables 
 		cd   --to move to your home directory
-		vi .bash_profile  --Check the bash_profile file for variables
+		vi .bash_profile  --check the bash_profile file for variables
 					
 			Add the following under the JAVA Environment Variables section into the .bash_profile file
 			---------------------------------------
@@ -175,7 +175,7 @@
 		cd $HADOOP_CONF_DIR 		#check the environment variables you just added
 	
 	## Modify file: core-site.xml
-		vi core-site.xml  --Copy core-site.xml file
+		vi core-site.xml  --copy core-site.xml file
 		
 		<configuration>
 		   <property>
@@ -186,7 +186,7 @@
 		
 	## Modify file: hdfs-site.xml  ## on the NameNode
 		## on the NameNode server if you need DataNode, Set the parameter "dfs.datanode.data.dir"
-		vi hdfs-site.xml  --Copy hdfs-site.xml file
+		vi hdfs-site.xml  --copy hdfs-site.xml file
 		
 		<configuration>
 		   <property>
@@ -212,11 +212,11 @@
 		</configuration>
 	
 	## Modify file: hdfs-site.xml  
-		vi hdfs-site.xml  --Copy hdfs-site.xml file
+		vi hdfs-site.xml  --copy hdfs-site.xml file
 			## on the other DataNode servers you have to remove "dfs.namenode.name.dir"
 	
 	## Modify file: mapred-site.xml  
-		vi mapred-site.xml  --Copy mapred-site.xml file
+		vi mapred-site.xml  --copy mapred-site.xml file
 		
 		<configuration>
 		   <property>
@@ -286,7 +286,7 @@
 		</configuration>
 	
 	## Modify file: yarn-site.xml  
-		vi yarn-site.xml  --Copy yarn-site.xml file
+		vi yarn-site.xml  --copy yarn-site.xml file
 		
 		<configuration>
 		   <property>
@@ -359,14 +359,14 @@
 	## Modify file: hadoop-env.sh       
 		Edit hadoop environment file by adding the follwing environment variables under the section 
 		"Set Hadoop-specific environment variables here.":  
-		vi hadoop-env.sh  --Copy hadoop-env.sh  
+		vi hadoop-env.sh  --copy hadoop-env.sh  
 			export JAVA_HOME=/bigdata/jdk1.8.0_191
 			export HADOOP_LOG_DIR=/var/log/hadoop
 			export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=/bigdata/hadoop-3.1.1/lib/native"
 			export HADOOP_COMMON_LIB_NATIVE_DIR=/bigdata/hadoop-3.1.1/lib/native
 		
 	## Create workers file
-		vi workers  --Copy worhers file
+		vi workers  --copy worhers file
 			## write line for each DataNode Server
 			master-node 
 	
@@ -455,7 +455,7 @@
 
 	## Modify file: hdfs-site.xml  
 		If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
-		vi hdfs-site.xml  --Copy hdfs-site.xml file
+		vi hdfs-site.xml  --copy hdfs-site.xml file
 		
 		<configuration>
 		   <property>
