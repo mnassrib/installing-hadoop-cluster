@@ -580,5 +580,4 @@
 	## Stop Hadoop on master-node
 		stop-all.sh
 
-![Image description](link-to-image)
-[Test Image 7](https://github.com/tograh/testrepository/master/3DTest.png)
+[NameNode](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/master-node9870.png)
