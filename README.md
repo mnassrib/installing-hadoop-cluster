@@ -576,6 +576,9 @@
 		Last Block Report: Tue Mar 31 22:42:38 CEST 2020
 		Num of Blocks: 0
 		``
-
+		
 	## Stop Hadoop on master-node
 		stop-all.sh
+
+![Image description](link-to-image)
+[Test Image 7](https://github.com/tograh/testrepository/master/3DTest.png)
