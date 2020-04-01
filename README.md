@@ -1,7 +1,7 @@
 # Installing Hadoop 3 on single node and multi-node clusters of Debian 9 VMs
 > This repository describes all necessary steps to install Hadoop on single node cluster as well as multi node cluster of virtual machines with Debian 9.
 
-> # For the success of this tutorial, we assume that you already have a virtual machine equipped with Linux OS (Debian 9). This should work in principle even with other Linux distributions. You can get Virtualbox to build virtual machines. To design a cluster, you must also have the ability to procure more than one virtual machine.
+> ### For the success of this tutorial, we assume that you already have a virtual machine equipped with Linux OS (Debian 9). This should work in principle even with other Linux distributions. You can get Virtualbox to build virtual machines. To design a cluster, you must also have the ability to procure more than one virtual machine.
 
 
 		##################################################################################
