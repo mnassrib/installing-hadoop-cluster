@@ -39,7 +39,7 @@
 			should return -> master-node
 	
 	## Create user for HADOOP (considering a hadoop user as "hdpuser")
-		For Debian OS users loging as a root and do the following:
+		For Debian OS users login as root and do the following:
 		apt-get install sudo
 		adduser hdpuser
 		usermod -aG sudo hdpuser  --To add a user to the sudo group. This can be done also according to (*)
@@ -57,9 +57,11 @@
 			## Allow root to run any commands anywhere
 			root		ALL=(ALL)	All
 			hdpuser 	ALL=(ALL)	ALL     ##add this line
-	
+
+### Commands with hdpuser
+> login as hdpuser
+
 	## Install SSH server
-		log with hdpuser
 		sudo apt-get install ssh
 	
 	## Install rsync which allows remote file synchronizations using SSH
@@ -75,20 +77,18 @@
 		logout or exit
 	
 	## Creating the needed directories:
-		mkdir /var/log/hadoop
-		chown -R hdpuser:hdpuser /var/log/hadoop
-		chmod -R 770 /var/log/hadoop
+		sudo mkdir /var/log/hadoop
+		sudo chown -R hdpuser:hdpuser /var/log/hadoop
+		sudo chmod -R 770 /var/log/hadoop
 		
-		mkdir /bigdata
-		chown -R hdpuser:hdpuser /bigdata
-		chmod -R 770 /bigdata
+		sudo mkdir /bigdata
+		sudo chown -R hdpuser:hdpuser /bigdata
+		sudo chmod -R 770 /bigdata
 
 
-2- Intall JDK and Hadoop			         
-
-Using Hadoop User (hdpuser)		     
-
-Installing Java					           
+## 2- Intall JDK and Hadoop			         
+### Using Hadoop User (hdpuser)		     
+#### Installing Java					           
 
 	## Download JDK version "jdk-8u191-Linux-x64.tar.gz", and follow installation steps:
 		cd /bigdata
