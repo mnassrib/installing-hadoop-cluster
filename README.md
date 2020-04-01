@@ -7,14 +7,7 @@
 		##	Install and Configure Hadoop with NameNode & DataNode on Single Node   ##
 		#################################################################################
 		
-		| **Install and Configure Hadoop with NameNode & DataNode on Single Node**   |
-
-
-|----------|
-| **Install and Configure Hadoop with NameNode & DataNode on Single Node** |
-
 		
-
 ## 1- Prepare Linux		       
 ### Commands with root	
 > login as root user
@@ -97,7 +90,7 @@
 ## 2- Intall JDK and Hadoop
 > login as hdpuser
 
-#### Installing Java					           
+### Installing Java					           
 
 	## Download JDK version "jdk-8u191-Linux-x64.tar.gz", and follow installation steps:
 		cd /bigdata
@@ -140,7 +133,7 @@
 		sudo update-alternatives --set javac /bigdata/jdk1.8.0_191/bin/javac
 		java -version  ## To check
 			
-#### Installing Hadoop					     
+### Installing Hadoop					     
 	
 	## Download Hadoop archive file "hadoop-3.1.1.tar.gz", and follow installation steps:
 		cd /bigdata
@@ -406,8 +399,10 @@
 		##################################################################################					
 
 
-1- Clone the vm created above	
-Commands with root				         
+## 1- Clone the vm created above
+### Commands with root	
+> login as root user
+
 	## Turnoff firewall
 		service firewalld status
 		service firewalld stop
@@ -451,7 +446,7 @@ Commands with root
 			192.168.1.5		master-node
 			192.168.1.6		slave-node-1
 
-Configure Hadoop				   
+### Configure Hadoop				   
 
 	## Edit the workers file into the master-node server
 		vi workers  --write line for each DataNode server (in our case both server machines are considered DataNodes)
@@ -490,7 +485,7 @@ Configure Hadoop
 		rm -rf /bigdata/HadoopData/datanode/*
 
 
-2- Starting Hadoop					  
+## 2- Starting Hadoop					  
 
 	## Format the NameNode on master-node
 		hdfs namenode -format
