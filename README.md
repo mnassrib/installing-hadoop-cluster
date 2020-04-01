@@ -17,7 +17,7 @@
 		service firewalld stop
 		systemctl disable firewalld
 	
-	## Change hostname and setup FQDN (considering the hostname as "master-node")
+	## Change hostname and setup FQDN (considering a hostname as "master-node")
 		# Display the hostname
 		cat /etc/hostname
 		
@@ -34,11 +34,11 @@
 		
 		# To check type
 		hostname
-			should give -> master-node
+			should return -> master-node
 		hostname -f
-			should give -> master-node
+			should return -> master-node
 	
-	## Create user for HADOOP (considering the hadoop user as "hdpuser")
+	## Create user for HADOOP (considering a hadoop user as "hdpuser")
 		For Debian OS users loging as a root and do the following:
 		apt-get install sudo
 		adduser hdpuser
@@ -55,7 +55,7 @@
 		
 		and under the below section
 			## Allow root to run any commands anywhere
-			root	ALL=(ALL)	All
+			root		ALL=(ALL)	All
 			hdpuser 	ALL=(ALL)	ALL     ##add this line
 	
 	## Install SSH server
