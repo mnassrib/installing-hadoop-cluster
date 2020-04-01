@@ -359,7 +359,8 @@
 		</configuration>
 		
 	## Modify file: hadoop-env.sh       
-		Edit hadoop environment file by adding the follwing environment variables under the section # Set Hadoop-specific environment variables here.:  
+		Edit hadoop environment file by adding the follwing environment variables under the section 
+		"Set Hadoop-specific environment variables here.":  
 		vi hadoop-env.sh  --Copy hadoop-env.sh  
 			export JAVA_HOME=/bigdata/jdk1.8.0_191
 			export HADOOP_LOG_DIR=/var/log/hadoop
