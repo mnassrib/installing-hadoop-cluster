@@ -394,7 +394,7 @@
 		
 		##Stop
 			stop-all.sh
-		
+>
 
 		##################################################################################
 		## 	Install Hadoop with NameNode & DataNodes on Multi Nodes	          	##
