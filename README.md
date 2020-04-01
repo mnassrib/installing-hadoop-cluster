@@ -8,6 +8,11 @@
 		#################################################################################
 		
 		| **Install and Configure Hadoop with NameNode & DataNode on Single Node**   |
+
+
+|----------|
+| **Install and Configure Hadoop with NameNode & DataNode on Single Node** |
+
 		
 
 ## 1- Prepare Linux		       
