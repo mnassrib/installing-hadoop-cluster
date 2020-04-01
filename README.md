@@ -1,16 +1,15 @@
 # Installing Hadoop 3 on single node and multi-node clusters of Debian 9 VMs
 > This repository describes all necessary steps to install Hadoop on single node cluster as well as multi node cluster of virtual machines with Debian 9.
 
+
 		##################################################################################
 		##	Install and Configure Hadoop with NameNode & DataNode on Single Node    ##
 		##################################################################################
 		
 
-
-
 ## 1- Prepare Linux		       
 ### Commands with root	
-> login as hdpuser
+> login as root user
 
 	## Turnoff firewall
 		apt-get install firewalld  --install for debian users
@@ -44,14 +43,14 @@
 		apt-get install sudo
 		adduser hdpuser
 		usermod -aG sudo hdpuser  --To add a user to the sudo group. This can be done also according to (*)
-		getent group sudo  --To verify the new Debian sudo user was added to the group, see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
+		getent group sudo  --To verify the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
 		deluser --remove-home username --To delete user
 		
 		## Verify Sudo Access in Debian
 			su - hdpuser  --Switch to the user account you just created
-			sudo whoami --Run any command that requires superuser access. For example, this should tell you that you are the root.
+			sudo whoami  --Run any command that requires superuser access. For example, this should tell you that you are the root.
 
-	## Add Hadoop user to sudoers file (*) https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
+	## Add Hadoop user to sudoers file (*), for more details see https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
 		## visudo -f /etc/sudoers
 		
 		and under the below section
