@@ -581,4 +581,4 @@
 		stop-all.sh
 
 ![NameNode](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/master-node9870.png)
-[ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/master-node8080.png)
+![ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/master-node8080.png)
