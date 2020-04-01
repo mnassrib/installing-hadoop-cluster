@@ -9,7 +9,8 @@
 
 
 ## 1- Prepare Linux		       
-### Commands with root	       
+### Commands with root	
+> login as hdpuser
 
 	## Turnoff firewall
 		apt-get install firewalld  --install for debian users
