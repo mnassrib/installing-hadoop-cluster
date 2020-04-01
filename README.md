@@ -58,8 +58,8 @@
 		
 		and under the below section
 			## Allow root to run any commands anywhere
-			root		ALL=(ALL)	All
-			hdpuser 	ALL=(ALL)	ALL     ##add this line
+			root	ALL=(ALL)	All
+			hdpuser ALL=(ALL)	ALL     ##add this line
 
 ### Commands with hdpuser
 > login as hdpuser
@@ -89,8 +89,9 @@
 		sudo chmod -R 770 /bigdata
 
 
-## 2- Intall JDK and Hadoop			         
-### Using Hadoop User (hdpuser)		     
+## 2- Intall JDK and Hadoop
+> login as hdpuser
+
 #### Installing Java					           
 
 	## Download JDK version "jdk-8u191-Linux-x64.tar.gz", and follow installation steps:
@@ -134,17 +135,13 @@
 		sudo update-alternatives --set javac /bigdata/jdk1.8.0_191/bin/javac
 		java -version  ## To check
 			
-
-Install Hadoop					     
+#### Installing Hadoop					     
 	
 	## Download Hadoop archive file "hadoop-3.1.1.tar.gz", and follow installation steps:
 		cd /bigdata
 		
 	## Extract the archive "hadoop-3.1.1.tar.gz", 
-	tar -zxvf hadoop-3.1.1.tar.gz -C /bigdata
-	
-	## Change ownership of Hadoop directory to Hadoop user, 
-	chown -R hdpuser:hdpuser /bigdata
+		tar -zxvf hadoop-3.1.1.tar.gz -C /bigdata
 		
 	## Setup Environment variables 
 		cd   --to move to your home directory
@@ -320,7 +317,8 @@ Install Hadoop
 		   </property>
 		   <property>
 			   <name>yarn.nodemanager.env-whitelist</name>
-			   <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+			   <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,
+			   HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
 		   </property>
 		   <property>
 			   <name>yarn.resourcemanager.webapp.https.address</name>
@@ -371,7 +369,7 @@ Install Hadoop
 	## Create workers file
 		vi workers  --Copy worhers file
 			## write line for each DataNode Server
-			master-node (for our case)
+			master-node 
 	
 	## Format the NameNode
 		hdfs namenode -format
@@ -390,19 +388,16 @@ Install Hadoop
 			6697 Jps
 			
 		## Default Web Interfaces
-			NameNode		http://master-node:9870/ 	Default HTTP port is 9870.
+			NameNode	http://master-node:9870/ 	Default HTTP port is 9870.
 			ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
 		
 		##Stop
 			stop-all.sh
 		
 
-
 		##################################################################################
 		## 	Install Hadoop with NameNode & DataNodes on Multi Nodes	          	##
 		##################################################################################					
-
-
 
 
 1- Clone the vm created above	
