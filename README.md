@@ -426,9 +426,9 @@
 		
 		# To check type
 		hostname
-			should give -> slave-node-1
+			should return -> slave-node-1
 		hostname -f
-			should give -> slave-node-1
+			should return -> slave-node-1
 
 	## Generate SSH keys and setup password less SSH between Hadoop services
 		log with hdpuser
@@ -442,9 +442,9 @@
 
 	## Edit the hosts file of the "master-node" vm			
 		vi /etc/hosts   --your file should look like the below
-			127.0.0.1		localhost	
-			192.168.1.5		master-node
-			192.168.1.6		slave-node-1
+			127.0.0.1	localhost	
+			192.168.1.5	master-node
+			192.168.1.6	slave-node-1
 
 ### Configure Hadoop				   
 
@@ -510,11 +510,12 @@
 			2815 DataNode
 
 	## Default Web Interfaces
-		NameNode		http://master-node:9870/ 	Default HTTP port is 9870.
+		NameNode	http://master-node:9870/ 	Default HTTP port is 9870.
 		ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
 
 	## Get report
-		hdfs dfsadmin -report 	--this command should display something like
+		hdfs dfsadmin -report 	--this command should return something like
+		``
 		Configured Capacity: 39891271680 (37.15 GB)
 		Present Capacity: 25074253824 (23.35 GB)
 		DFS Remaining: 25074204672 (23.35 GB)
@@ -573,6 +574,7 @@
 		Last contact: Tue Mar 31 22:46:38 CEST 2020
 		Last Block Report: Tue Mar 31 22:42:38 CEST 2020
 		Num of Blocks: 0
+		``
 
 	## Stop Hadoop on master-node
 		stop-all.sh
