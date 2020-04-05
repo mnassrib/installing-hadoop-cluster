@@ -526,7 +526,7 @@
 ``hdpuser@slave-node-1:~$ rm -rf /bigdata/HadoopData/datanode/*``
 
 
-## 2- Starting Hadoop on master-node
+## 2- Starting and stopping Hadoop on master-node
 
 - Format the NameNode
 		
@@ -625,6 +625,6 @@
 	Last Block Report: Tue Mar 31 22:42:38 CEST 2020
 	Num of Blocks: 0
 		
-###### Stop Hadoop on master-node
+###### Stop Hadoop
 		
 ``hdpuser@master-node:~$ stop-all.sh``
