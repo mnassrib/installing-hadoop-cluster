@@ -67,7 +67,7 @@
 
 ``root@master-node:~# deluser --remove-home username`` --to delete username
 		
--- Verify Sudo Access in Debian
+> Verify Sudo Access in Debian
 
 ``root@master-node:~# su - hdpuser``  --switch to the user account you just created
 
@@ -78,12 +78,12 @@
 	root
 
 - Add Hadoop user to sudoers file (*), for more details see https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
-		## visudo -f /etc/sudoers
-		
-		and under the below section
-			## Allow root to run any commands anywhere
-			root	ALL=(ALL)	All
-			hdpuser ALL=(ALL)	ALL     ##add this line
+
+``root@master-node:~# visudo -f /etc/sudoers``  --and under the below section add
+	
+	## Allow root to run any commands anywhere
+	root	ALL=(ALL)	All
+	hdpuser ALL=(ALL)	ALL     ##add this line
 
 ### Commands with hdpuser
 > login as hdpuser
