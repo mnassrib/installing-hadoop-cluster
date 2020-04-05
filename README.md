@@ -538,6 +538,7 @@
 ###### Start
 			
 ``hdpuser@master-node:~$ start-all.sh``
+![starthadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/starthadoop.png)
 
 ###### Check hadoop processes are running on master-node
 			
