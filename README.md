@@ -33,12 +33,13 @@
 > Edit the hostname
 
 ``root@debian:~# vi /etc/hostname``   --remove the existing file and write the below
+	
 	master-node
 			
 ``root@debian:~# vi /etc/hosts``   --your file should look like the below
 
-	127.0.0.1		localhost	
-	192.xxx.x.1		master-node
+	127.0.0.1	localhost	
+	192.xxx.x.1	master-node
 			
 > Type the following
 		
@@ -46,18 +47,25 @@
 		
 > To check type
 
-``root@debian:~# hostname``
-			should return -> master-node
-``root@debian:~# hostname -f``
-			should return -> master-node
+``root@debian:~# hostname`` --should return 
 	
-- Create user for HADOOP (considering a hadoop user as "hdpuser")
-		For Debian OS users login as root and do the following:
-		apt-get install sudo
-		adduser hdpuser
-		usermod -aG sudo hdpuser  --to add a user to the sudo group. This can be done also according to (*)
-		getent group sudo  --to verify the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
-		deluser --remove-home username --To delete user
+	master-node
+``root@debian:~# hostname -f`` --should return 
+
+	master-node
+	
+- Create user for Hadoop (considering a hadoop user as "hdpuser")
+> For Debian OS users login as root and do the following:
+
+``root@debian:~# apt-get install sudo``
+
+``root@debian:~# adduser hdpuser``
+
+``root@debian:~# usermod -aG sudo hdpuser``  --to add a user to the sudo group. This can be done also according to (*)
+		
+``root@debian:~# getent group sudo``  --to verify the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
+
+``root@debian:~# deluser --remove-home username`` --to delete user
 		
 		## Verify Sudo Access in Debian
 			su - hdpuser  --switch to the user account you just created
