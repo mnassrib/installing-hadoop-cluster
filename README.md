@@ -93,17 +93,17 @@
 
 ### Installing Java					           
 
-	## Download JDK version "jdk-8u191-Linux-x64.tar.gz", and follow installation steps:
+	## Download JDK version "jdk-8u241-Linux-x64.tar.gz", and follow installation steps:
 		cd /bigdata
 		
 	## Extract the archive to installation path, 
-		tar -xzvf jdk-8u191-Linux-x64.tar.gz -C /bigdata
+		tar -xzvf jdk-8u241-Linux-x64.tar.gz -C /bigdata
 		
 	## Setup Environment variables
 		cd ~
 		vi .bash_profile
 		## Add the below at the end of file
-			export JAVA_HOME=/bigdata/jdk1.8.0_191
+			export JAVA_HOME=/bigdata/jdk1.8.0_241
 			export PATH=$PATH:$JAVA_HOME/bin
 			
 		--after save the bash_profile load it
@@ -123,15 +123,15 @@
 			export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 			# Setup JAVA Environment variables
-			export JAVA_HOME=/bigdata/jdk1.8.0_191
+			export JAVA_HOME=/bigdata/jdk1.8.0_241
 			export PATH=$PATH:$JAVA_HOME/bin
 			---------------------------------------
 
 		## Install Java
-		sudo update-alternatives --install "/usr/bin/java" "java" "/bigdata/jdk1.8.0_191/bin/java" 0
-		sudo update-alternatives --install "/usr/bin/javac" "javac" "/bigdata/jdk1.8.0_191/bin/javac" 0
-		sudo update-alternatives --set java /bigdata/jdk1.8.0_191/bin/java
-		sudo update-alternatives --set javac /bigdata/jdk1.8.0_191/bin/javac
+		sudo update-alternatives --install "/usr/bin/java" "java" "/bigdata/jdk1.8.0_241/bin/java" 0
+		sudo update-alternatives --install "/usr/bin/javac" "javac" "/bigdata/jdk1.8.0_241/bin/javac" 0
+		sudo update-alternatives --set java /bigdata/jdk1.8.0_241/bin/java
+		sudo update-alternatives --set javac /bigdata/jdk1.8.0_241/bin/javac
 		java -version  ## To check
 			
 ### Installing Hadoop					     
@@ -361,7 +361,7 @@
 		Edit hadoop environment file by adding the follwing environment variables under the section 
 		"Set Hadoop-specific environment variables here.":  
 		vi hadoop-env.sh  --copy hadoop-env.sh  
-			export JAVA_HOME=/bigdata/jdk1.8.0_191
+			export JAVA_HOME=/bigdata/jdk1.8.0_241
 			export HADOOP_LOG_DIR=/var/log/hadoop
 			export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=/bigdata/hadoop-3.1.1/lib/native"
 			export HADOOP_COMMON_LIB_NATIVE_DIR=/bigdata/hadoop-3.1.1/lib/native
