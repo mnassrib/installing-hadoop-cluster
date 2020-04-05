@@ -358,7 +358,7 @@
 			
 ``hdpuser@master-node:~$ start-all.sh``
 	
-- Check hadoop processes are running
+###### Check hadoop processes are running
 
 	hdpuser@master-node:~$ jps 	--this command should return something like
 	5968 SecondaryNameNode
@@ -370,13 +370,12 @@
 			
 ###### Default Web Interfaces
 	
-	NameNode	http://master-node:9870/ 	Default HTTP port is 9870.
-	
-	ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
+> NameNode	http://master-node:9870/ 	Default HTTP port is 9870. 
+ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
 		
 ###### Stop
 
-``hdpuser@master-node:~$stop-all.sh``
+``hdpuser@master-node:~$ stop-all.sh``
 
 >
 
