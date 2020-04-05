@@ -454,13 +454,14 @@
 	192.xxx.x.2	slave-node-1
 
 ### Configure Hadoop				   
-
 - Edit the workers file into the master-node server
 		
 ``hdpuser@master-node:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
 			
 	master-node  # if you don't want this node to be DataNode, remove this line from the workers file)
 	slave-node-1
+	
+> The most important thing here is to configure in particular the workers file of the master-node server because it administers the other nodes. Concerning the slave-node-1 workers file, clean up it by leaving it empty or perform the same configuration as the master-node server workers file.
 
 - Modify file: hdfs-site.xml  
 > If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
