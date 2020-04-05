@@ -564,7 +564,7 @@
 	
 	ResourceManager	> http://master-node:8080/	Default HTTP port is 8080.
 		
-![ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node8080.PNG)
+![ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node8080.png)
 
 ###### Get report
 
