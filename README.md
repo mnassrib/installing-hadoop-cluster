@@ -61,13 +61,13 @@
 
 ``root@debian:~# adduser hdpuser``
 
-``root@debian:~# usermod -aG sudo hdpuser``  --to add a user to the sudo group. This can be done also according to (*)
+``root@debian:~# usermod -aG sudo hdpuser``  --to add a user to the sudo group. This can be done also according to (*) cited below
 		
-``root@debian:~# getent group sudo``  --to verify the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
+``root@debian:~# getent group sudo``  --to verify if the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
 
-``root@debian:~# deluser --remove-home username`` --to delete user
+``root@debian:~# deluser --remove-home username`` --to delete username
 		
-		## Verify Sudo Access in Debian
+- Verify Sudo Access in Debian
 			su - hdpuser  --switch to the user account you just created
 			sudo whoami  --run any command that requires superuser access. For example, this should tell you that you are the root.
 
