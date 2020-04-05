@@ -88,11 +88,12 @@
 ### Commands with hdpuser
 > login as hdpuser
 
-	## Install SSH server
-		sudo apt-get install ssh
+- Install SSH server
+		
+``hdpuser@master-node:~$ sudo apt-get install ssh``
 	
-	## Install rsync which allows remote file synchronizations using SSH
-		sudo apt-get install rsync
+- Install rsync which allows remote file synchronizations using SSH
+``hdpuser@master-node:~$ sudo apt-get install rsync``
 	
 	## Generate SSH keys and setup password less SSH between Hadoop services
 		sudo ssh-keygen -t rsa  ## just press Enter for all choices
