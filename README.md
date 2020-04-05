@@ -526,13 +526,13 @@
 ``hdpuser@slave-node-1:~$ rm -rf /bigdata/HadoopData/datanode/*``
 
 
-## 2- Starting Hadoop on master-node			  
+## 2- Starting Hadoop on master-node
 
-- Format the NameNode on master-node
+- Format the NameNode
 		
 ``hdpuser@master-node:~$ hdfs namenode -format``
 	
-- Start Hadoop on master-node
+- Start Hadoop
 		
 ###### Start
 			
