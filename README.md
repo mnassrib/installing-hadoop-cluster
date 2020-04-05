@@ -93,25 +93,38 @@
 ``hdpuser@master-node:~$ sudo apt-get install ssh``
 	
 - Install rsync which allows remote file synchronizations using SSH
+
 ``hdpuser@master-node:~$ sudo apt-get install rsync``
 	
-	## Generate SSH keys and setup password less SSH between Hadoop services
-		sudo ssh-keygen -t rsa  ## just press Enter for all choices
-		cat ~/.ssh/id_rsa.pub >> ~/.ssh/id_rsa.pub/authorized_keys
-		ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-node (you should be able to ssh without asking for password)
-		ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@xxxxxxxx (if you have more than one node, you will repeat for each node)
-		ssh hdpuser@xxxx 
-			- yes
-		logout or exit
-	
-	## Creating the needed directories:
-		sudo mkdir /var/log/hadoop
-		sudo chown -R hdpuser:hdpuser /var/log/hadoop
-		sudo chmod -R 770 /var/log/hadoop
+- Generate SSH keys and setup password less SSH between Hadoop services
 		
-		sudo mkdir /bigdata
-		sudo chown -R hdpuser:hdpuser /bigdata
-		sudo chmod -R 770 /bigdata
+``hdpuser@master-node:~$ sudo ssh-keygen -t rsa``  ## just press Enter for all choices
+
+``hdpuser@master-node:~$ sudo cat ~/.ssh/id_rsa.pub >> ~/.ssh/id_rsa.pub/authorized_keys``
+
+``hdpuser@master-node:~$ sudo ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-node``  --(you should be able to ssh without asking for password)
+
+``hdpuser@master-node:~$ sudo ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@xxxxxxxx``   --(if you have more than one node, you will repeat for each node)
+
+``hdpuser@master-node:~$ ssh hdpuser@xxxxxxxx``
+
+	yes
+	
+``hdpuser@master-node:~$ exit``
+	
+- Creating the needed directories:
+
+``hdpuser@master-node:~$sudo mkdir /var/log/hadoop``
+
+``hdpuser@master-node:~$ sudo chown -R hdpuser:hdpuser /var/log/hadoop``
+
+``hdpuser@master-node:~$ sudo chmod -R 770 /var/log/hadoop``
+		
+``hdpuser@master-node:~$ sudo mkdir /bigdata``
+
+``hdpuser@master-node:~$ sudo chown -R hdpuser:hdpuser /bigdata``
+
+``hdpuser@master-node:~$ sudo chmod -R 770 /bigdata``
 
 
 ## 2- Intall JDK and Hadoop
