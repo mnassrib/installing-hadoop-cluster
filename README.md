@@ -1,4 +1,4 @@
-# Installing Hadoop on single node as well multi node clusters using Debian 9 Linux VMs
+# Installing Hadoop on single node as well multi node cluster using Debian 9 Linux VMs
 
 > This repository reviews all required steps to install Hadoop on single node cluster as well as multi node cluster using virtual machines with Debian 9.
 
