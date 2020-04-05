@@ -57,19 +57,21 @@
 - Create user for Hadoop (considering a hadoop user as "hdpuser")
 > For Debian OS users login as root and do the following:
 
-``root@debian:~# apt-get install sudo``
+``root@master-node:~# apt-get install sudo``
 
-``root@debian:~# adduser hdpuser``
+``root@master-node:~# adduser hdpuser``
 
-``root@debian:~# usermod -aG sudo hdpuser``  --to add a user to the sudo group. This can be done also according to (*) cited below
+``root@master-node:~# usermod -aG sudo hdpuser``  --to add a user to the sudo group. This can be done also according to (*) cited below
 		
-``root@debian:~# getent group sudo``  --to verify if the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
+``root@master-node:~# getent group sudo``  --to verify if the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
 
-``root@debian:~# deluser --remove-home username`` --to delete username
+``root@master-node:~# deluser --remove-home username`` --to delete username
 		
-- Verify Sudo Access in Debian
-			su - hdpuser  --switch to the user account you just created
-			sudo whoami  --run any command that requires superuser access. For example, this should tell you that you are the root.
+-- Verify Sudo Access in Debian
+
+``root@master-node:~# su - hdpuser``  --switch to the user account you just created
+
+``hdpuser@master-node:~$ sudo whoami``  --run any command that requires superuser access. For example, this should tell you that you are the root.
 
 	## Add Hadoop user to sudoers file (*), for more details see https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
 		## visudo -f /etc/sudoers
