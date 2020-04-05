@@ -4,7 +4,6 @@
 
 > **For the success of the tutorial, we assume that you already have a virtual machine equipped with Linux OS (Debian 9). This should work in principle even with other Linux distributions. You can get Virtualbox to build virtual machines. In order to concept a cluster, you must also have the ability to procure more than one virtual machine.**
 
->
 		
 > # Install and Configure Hadoop with NameNode & DataNode on Single Node
 		
@@ -376,8 +375,6 @@
 ###### Stop
 
 ``hdpuser@master-node:~$ stop-all.sh``
-
->
 
 
 > # Install Hadoop with NameNode & DataNodes on Multi Nodes
