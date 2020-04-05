@@ -14,9 +14,12 @@
 > login as root user
 
 	Turnoff firewall
-	``apt-get install firewalld``  --install firewalld if it is not installed
-	``service firewalld status``
+``apt-get install firewalld``  --install firewalld if it is not installed
+
+``service firewalld status``
+
 ``service firewalld stop``
+
 ``systemctl disable firewalld``
 
 
