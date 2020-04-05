@@ -208,7 +208,7 @@
 	export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$HADOOP_CONF_DIR:$HADOOP_COMMON_HOME/*:$HADOOP_COMMON_HOME/lib/*:$HADOOP_HDFS_HOME/*:$HADOOP_HDFS_H$
 
 		
-``hdpuser@master-node:~$ source .bashrc`` --after save the bashrc, load it
+``hdpuser@master-node:~$ source .bashrc`` --after save the .bashrc file, load it
 			
 - Create directore for Hadoop Data for (NameNode & DataNode)
 		
@@ -235,7 +235,7 @@
 		
 - Modify file: hdfs-site.xml  ## on the NameNode
 	
-	## on the NameNode server if you need DataNode, set the parameter "dfs.datanode.data.dir"
+	> ## On the NameNode server if you need DataNode, set the parameter "dfs.datanode.data.dir"
 
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 		
