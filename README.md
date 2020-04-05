@@ -12,16 +12,18 @@
 ## 1- Prepare Linux		       
 ### Commands with root	
 > login as root user
+
 ``user@debian:~$ su root``
 
 - Turnoff firewall
+
 ``root@debian:~# apt-get install firewalld``  --install firewalld if it is not installed
 
-``service firewalld status``
+``root@debian:~# service firewalld status``
 
-``service firewalld stop``
+``root@debian:~# service firewalld stop``
 
-``systemctl disable firewalld``
+``root@debian:~# systemctl disable firewalld``
 
 
 	## Turnoff firewall
