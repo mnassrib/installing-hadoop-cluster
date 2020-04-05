@@ -4,9 +4,6 @@
 
 > **For the success of the tutorial, we assume that you already have a virtual machine equipped with Linux OS (Debian 9). This should work in principle even with other Linux distributions. You can get Virtualbox to build virtual machines. In order to concept a cluster, you must also have the ability to procure more than one virtual machine.**
 
-		#################################################################################
-		##	Install and Configure Hadoop with NameNode & DataNode on Single Node   ##
-		#################################################################################
 		
 > # Install and Configure Hadoop with NameNode & DataNode on Single Node
 		
@@ -100,13 +97,13 @@
 	
 - Generate SSH keys and setup password less SSH between Hadoop services
 		
-``hdpuser@master-node:~$ sudo ssh-keygen -t rsa``  ## just press Enter for all choices
+``hdpuser@master-node:~$ ssh-keygen -t rsa``  ## just press Enter for all choices
 
-``hdpuser@master-node:~$ sudo cat ~/.ssh/id_rsa.pub >> ~/.ssh/id_rsa.pub/authorized_keys``
+``hdpuser@master-node:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/id_rsa.pub/authorized_keys``
 
-``hdpuser@master-node:~$ sudo ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-node``  --(you should be able to ssh without asking for password)
+``hdpuser@master-node:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-node``  --(you should be able to ssh without asking for password)
 
-``hdpuser@master-node:~$ sudo ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@xxxxxxxx``   --(if you have more than one node, you will repeat for each node)
+``hdpuser@master-node:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@xxxxxxxx``   --(if you have more than one node, you will repeat for each node)
 
 ``hdpuser@master-node:~$ ssh hdpuser@xxxxxxxx``
 
@@ -379,98 +376,152 @@
 
 ``hdpuser@master-node:~$ stop-all.sh``
 
->
 
-		##################################################################################
-		## 	Install Hadoop with NameNode & DataNodes on Multi Nodes	          	##
-		##################################################################################					
+> # Install Hadoop with NameNode & DataNodes on Multi Nodes
 
 
-## 1- Clone the vm created above
+## 1- Clone the master-node host created above
 ### Commands with root	
 > login as root user
 
-	## Turnoff firewall
-		service firewalld status
-		service firewalld stop
-		systemctl disable firewalld
+``hdpuser@master-node:~$ su root``
+
+- Turnoff firewall
+
+``root@master-node:~# service firewalld status``
+		
+``root@master-node:~# service firewalld stop``
+
+``root@master-node:~# systemctl disable firewalld``
 	
-	## Change hostname and setup FQDN (considering the new hostname as "slave-node-1")
-		# Display the hostname
-		cat /etc/hostname
+- Change hostname and setup FQDN (considering the new hostname as "slave-node-1")
+> Display the hostname
+
+``root@master-node:~# cat /etc/hostname``
 		
-		# Edit the hostname
-		vi /etc/hostname   --remove the existing file and write the below
-			slave-node-1
+- Edit the hostname
+
+``root@master-node:~# vi /etc/hostname``  --remove the existing file and write the below
 			
-		vi /etc/hosts   --your file should look like the below
-			127.0.0.1		localhost	
-			192.168.1.5		master-node
-			192.168.1.6		slave-node-1
+	slave-node-1
 			
-		# Type the following
-		hostname slave-node-1
+``root@master-node:~# vi /etc/hosts``  --your file should look like the below
+			
+	127.0.0.1	localhost	
+	192.xxx.x.1	master-node
+	192.xxx.x.2	slave-node-1
+			
+- Type the following
 		
-		# To check type
-		hostname
-			should return -> slave-node-1
-		hostname -f
-			should return -> slave-node-1
+``root@master-node:~# hostname slave-node-1``
+		
+> To check type
+		
+``root@master-node:~# hostname``  --should return 
+	
+	slave-node-1
+
+``root@master-node:~# hostname -f``  --should return 
+
+	slave-node-1
 			
 > login as hdpuser
 
-	## Generate SSH keys and setup password less SSH between Hadoop services
-		sudo ssh-keygen -t rsa  ## just press Enter for all choices
-		cat ~/.ssh/id_rsa.pub >> ~/.ssh/id_rsa.pub/authorized_keys
-		ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-node (you should be able to ssh without asking for password)
-		ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@xxxxxxxx (if you have more than one node, you will repeat for each node)
-		ssh hdpuser@xxxx 
-			- yes
-		logout or exit
+- Generate SSH keys and setup password less SSH between Hadoop services
 
-	## Edit the hosts file of the "master-node" vm			
-		vi /etc/hosts   --your file should look like the below
-			127.0.0.1	localhost	
-			192.168.1.5	master-node
-			192.168.1.6	slave-node-1
+``hdpuser@slave-node-1:~$ ssh-keygen -t rsa``  ## just press Enter for all choices
+		
+``hdpuser@slave-node-1:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/id_rsa.pub/authorized_keys``
+
+``hdpuser@slave-node-1:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-node``  (you should be able to ssh without asking for password)
+
+``hdpuser@slave-node-1:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-node-1``  (if you have more than one node, you will repeat for each node)
+		
+``hdpuser@slave-node-1:~$ ssh hdpuser@xxxx`` 
+			
+	yes
+
+``hdpuser@slave-node-1:~$ exit``
+
+- Edit the hosts file of the "master-node" host	
+
+``hdpuser@slave-node-1:~$ ssh hdpuser@master-node``
+
+``hdpuser@master-node:~$ vi /etc/hosts``  --your file should look like the below
+			
+	127.0.0.1	localhost	
+	192.xxx.x.1	master-node
+	192.xxx.x.2	slave-node-1
 
 ### Configure Hadoop				   
 
-	## Edit the workers file into the master-node server
-		vi workers  --write line for each DataNode server (in our case both server machines are considered DataNodes)
-			master-node  #(if you don't want this node to be DataNode, remove this line from the workers file)
-			slave-node-1
+- Edit the workers file into the master-node server
+		
+``hdpuser@master-node:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
+			
+	master-node  #(if you don't want this node to be DataNode, remove this line from the workers file)
+	slave-node-1
 
-	## Modify file: hdfs-site.xml  
-		If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
-		vi hdfs-site.xml  --copy hdfs-site.xml file
+- Modify file: hdfs-site.xml  
+> If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
 		
-		<configuration>
-		   <property>
-			   <name>dfs.namenode.name.dir</name>
-			   <value>file:///bigdata/HadoopData/namenode</value>
-		   </property>
-		   <property>
-			   <name>dfs.datanode.data.dir</name>
-			   <value>file:///bigdata/HadoopData/datanode</value>
-		   </property>
-		   <property>
-			   <name>dfs.blocksize</name>
-			   <value>134217728</value>
-		   </property>
-		   <property>
-			   <name>dfs.replication</name>
-			   <value>2</value>
-		   </property>
-		   <property>
-			   <name>dfs.permissions</name>
-			   <value>false</value>
-		   </property>
-		</configuration>
+``hdpuser@master-node:~$ vi hdfs-site.xml``  --copy hdfs-site.xml file
+
+>> on the master-node host:
+
+	<configuration>
+	   <property>
+		   <name>dfs.namenode.name.dir</name>
+		   <value>file:///bigdata/HadoopData/namenode</value>
+	   </property>
+	   <property>
+		   <name>dfs.datanode.data.dir</name>
+		   <value>file:///bigdata/HadoopData/datanode</value>
+	   </property>
+	   <property>
+		   <name>dfs.blocksize</name>
+		   <value>134217728</value>
+	   </property>
+	   <property>
+		   <name>dfs.replication</name>
+		   <value>2</value>
+	   </property>
+	   <property>
+		   <name>dfs.permissions</name>
+		   <value>false</value>
+	   </property>
+	</configuration>
+
+>> on the slave_node-1 host:
+
+	<configuration>
+	   <property>
+		   <name>dfs.datanode.data.dir</name>
+		   <value>file:///bigdata/HadoopData/datanode</value>
+	   </property>
+	   <property>
+		   <name>dfs.blocksize</name>
+		   <value>134217728</value>
+	   </property>
+	   <property>
+		   <name>dfs.replication</name>
+		   <value>2</value>
+	   </property>
+	   <property>
+		   <name>dfs.permissions</name>
+		   <value>false</value>
+	   </property>
+	</configuration>
 		
-	## Let's clean up some old files on both machines
-		rm -rf /bigdata/HadoopData/namenode/*
-		rm -rf /bigdata/HadoopData/datanode/*
+- Clean up some old files on both machines
+
+``hdpuser@master-node:~$ rm -rf /bigdata/HadoopData/namenode/*``
+
+``hdpuser@master-node:~$ rm -rf /bigdata/HadoopData/datanode/*``
+		
+``hdpuser@slave-node-1:~$ rm -rf /bigdata/HadoopData/namenode/*``
+
+``hdpuser@slave-node-1:~$ rm -rf /bigdata/HadoopData/datanode/*``
 
 
 ## 2- Starting Hadoop					  
