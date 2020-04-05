@@ -25,35 +25,32 @@
 
 ``root@debian:~# systemctl disable firewalld``
 
+- Change hostname and setup FQDN (considering a hostname as "master-node")
+> Display the hostname
 
-	## Turnoff firewall
-		apt-get install firewalld  --install firewalld if it is not installed
-		service firewalld status
-		service firewalld stop
-		systemctl disable firewalld
-	
-	## Change hostname and setup FQDN (considering a hostname as "master-node")
-		# Display the hostname
-		cat /etc/hostname
+``root@debian:~# cat /etc/hostname``
 		
-		# Edit the hostname
-		vi /etc/hostname   --remove the existing file and write the below
-			master-node
+> Edit the hostname
+
+``root@debian:~# vi /etc/hostname``   --remove the existing file and write the below
+	master-node
 			
-		vi /etc/hosts   --your file should look like the below
-			127.0.0.1		localhost	
-			192.168.1.5		master-node
+``root@debian:~# vi /etc/hosts``   --your file should look like the below
+	127.0.0.1		localhost	
+	192.xxx.x.1		master-node
 			
-		# Type the following
-		hostname master-node
+> Type the following
 		
-		# To check type
-		hostname
+``root@debian:~# hostname master-node``
+		
+> To check type
+
+``root@debian:~# hostname``
 			should return -> master-node
-		hostname -f
+``root@debian:~# hostname -f``
 			should return -> master-node
 	
-	## Create user for HADOOP (considering a hadoop user as "hdpuser")
+- Create user for HADOOP (considering a hadoop user as "hdpuser")
 		For Debian OS users login as root and do the following:
 		apt-get install sudo
 		adduser hdpuser
