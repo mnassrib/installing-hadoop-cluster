@@ -175,36 +175,40 @@
 			
 ### Installing Hadoop					     
 	
-	## Download Hadoop archive file "hadoop-3.1.1.tar.gz", and follow installation steps:
-		cd /bigdata
-		
-	## Extract the archive "hadoop-3.1.1.tar.gz", 
-		tar -zxvf hadoop-3.1.1.tar.gz -C /bigdata
-		
-	## Setup Environment variables 
-		cd   --to move to your home directory
-		vi .bash_profile  --check the bash_profile file for variables
-					
-			Add the following under the JAVA Environment Variables section into the .bash_profile file
-			---------------------------------------
-			# Setup Hadoop Environment variables
-			export HADOOP_HOME=/bigdata/hadoop-3.1.1
-			export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-			export HADOOP_NAMENODE_OPTS="-XX:+UseParallelGC"
-			export HADOOP_MAPRED_HOME=$HADOOP_HOME
-			export HADOOP_HDFS_HOME=$HADOOP_HOME
-			export HADOOP_COMMON_HOME=$HADOOP_HOME
-			export HADOOP_YARN_HOME=$HADOOP_HOME
-			export YARN_HOME=$HADOOP_HOME
-			export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-			export HADOOP_CLASSPATH=$JAVA_HOME/lib/tools.jar
-			export HADOOP_LOG_DIR=/var/log/hadoop
-			export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
-			export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
-			---------------------------------------
+- Download Hadoop archive file "hadoop-3.1.1.tar.gz", and follow installation steps:
 
-		--after save the bash_profile load it
-		source .bash_profile
+``hdpuser@master-node:~$ cd /bigdata``
+		
+- Extract the archive "hadoop-3.1.1.tar.gz", 
+		
+``hdpuser@master-node:/bigdata$ tar -zxvf hadoop-3.1.1.tar.gz``
+		
+- Setup Environment variables 
+
+``hdpuser@master-node:/bigdata$ cd``  --to move to your home directory
+
+``hdpuser@master-node:~$ vi .bashrc``  --add the following under the Java Environment Variables section into the .bashrc file
+
+	# Setup Hadoop Environment variables
+	export HADOOP_HOME=/bigdata/hadoop-3.1.1
+	export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+	export HADOOP_NAMENODE_OPTS="-XX:+UseParallelGC"
+	export HADOOP_MAPRED_HOME=$HADOOP_HOME
+	export HADOOP_HDFS_HOME=$HADOOP_HOME
+	export HADOOP_COMMON_HOME=$HADOOP_HOME
+	export HADOOP_YARN_HOME=$HADOOP_HOME
+	export YARN_HOME=$HADOOP_HOME
+	export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+	export HADOOP_CLASSPATH=$JAVA_HOME/lib/tools.jar
+	export HADOOP_LOG_DIR=/var/log/hadoop
+	export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
+	export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+
+
+	export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$HADOOP_CONF_DIR:$HADOOP_COMMON_HOME/*:$HADOOP_COMMON_HOME/lib/*:$HADOOP_HDFS_HOME/*:$HADOOP_HDFS_H$
+
+		
+``hdpuser@master-node:~$ source .bashrc`` --after save the bashrc, load it
 			
 	## Create directore for Hadoop Data for (NameNode & DataNode)
 		mkdir /bigdata/HadoopData
