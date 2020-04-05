@@ -146,24 +146,17 @@
 
 ``hdpuser@master-node:~$ vi .bashrc``  --add the below at the end of the file
 			
-			export JAVA_HOME=/bigdata/jdk1.8.0_241
-			export PATH=$PATH:$JAVA_HOME/bin
-			
---after save the .bashrc file, it should like the below
-	
-	----------------------------------------------------------------------------
 	# User specific environment and startup programs
-
 	export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 	# Setup JAVA Environment variables
 	export JAVA_HOME=/bigdata/jdk1.8.0_241
 	export PATH=$PATH:$JAVA_HOME/bin
-	----------------------------------------------------------------------------
-
+			
 ``hdpuser@master-node:~$ source .bashrc`` --load the .bashrc file
 
 - Install Java
+
 ``hdpuser@master-node:~$ sudo update-alternatives --install "/usr/bin/java" "java" "/bigdata/jdk1.8.0_241/bin/java" 0``
 
 ``hdpuser@master-node:~$ sudo update-alternatives --install "/usr/bin/javac" "javac" "/bigdata/jdk1.8.0_241/bin/javac" 0``
@@ -172,7 +165,7 @@
 
 ``hdpuser@master-node:~$ sudo update-alternatives --set javac /bigdata/jdk1.8.0_241/bin/javac``
 
-``hdpuser@master-node:~$ java -version``  ## To check
+``hdpuser@master-node:~$ java -version``  ## to check
 
 	hdpuser@master-node:~$ java -version
 	java version "1.8.0_241"
