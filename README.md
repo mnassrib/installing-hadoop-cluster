@@ -344,7 +344,7 @@
 		
 - Create workers file
 		
-``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi workers``  --copy worhers file
+``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi workers``  --copy workers file
 	
 	## write line for each DataNode Server
 	master-node 
@@ -354,24 +354,28 @@
 ``hdpuser@master-node:~$ hdfs namenode -format``
 	
 - Start & Stop Hadoop
-		##Start
-			start-all.sh
-	
-		##Check hadoop processes are running
-			jps 	--this command should display something like
-			5968 SecondaryNameNode
-			5794 DataNode
-			6227 ResourceManager
-			5684 NameNode
-			6342 NodeManager
-			6697 Jps
+###### Start
 			
-		## Default Web Interfaces
-			NameNode	http://master-node:9870/ 	Default HTTP port is 9870.
-			ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
+``hdpuser@master-node:~$ start-all.sh``
+	
+- Check hadoop processes are running
+
+	hdpuser@master-node:~$ jps 	--this command should display something like
+	5968 SecondaryNameNode
+	5794 DataNode
+	6227 ResourceManager
+	5684 NameNode
+	6342 NodeManager
+	6697 Jps
+			
+- Default Web Interfaces
+	
+	NameNode	http://master-node:9870/ 	Default HTTP port is 9870.
+	ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
 		
-		##Stop
-			stop-all.sh
+###### Stop
+
+``hdpuser@master-node:~$stop-all.sh``
 >
 
 		##################################################################################
