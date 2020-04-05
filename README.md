@@ -36,6 +36,7 @@
 	master-node
 			
 ``root@debian:~# vi /etc/hosts``   --your file should look like the below
+
 	127.0.0.1		localhost	
 	192.xxx.x.1		master-node
 			
