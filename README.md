@@ -235,7 +235,7 @@
 		
 - Modify file: hdfs-site.xml  ## on the NameNode
 	
-	> ## On the NameNode server if you need DataNode, set the parameter "dfs.datanode.data.dir"
+	> #### On the NameNode server if you need DataNode, set the parameter "dfs.datanode.data.dir"
 
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 		
@@ -333,8 +333,7 @@
 	   </property>
 		
 - Modify file: hadoop-env.sh       
-
-	Edit hadoop environment file by adding the follwing environment variables under the section "Set Hadoop-specific environment variables here.":  
+> Edit hadoop environment file by adding the follwing environment variables under the section "Set Hadoop-specific environment variables here.":  
 		
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hadoop-env.sh``  --copy hadoop-env.sh  
 	
