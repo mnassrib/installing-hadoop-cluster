@@ -132,46 +132,53 @@
 
 ### Installing Java					           
 
-	## Download JDK version "jdk-8u241-Linux-x64.tar.gz", and follow installation steps:
-		cd /bigdata
+- Download JDK version "jdk-8u241-Linux-x64.tar.gz", and follow installation steps:
+
+``hdpuser@master-node:~$ cd /bigdata``
 		
-	## Extract the archive to installation path, 
-		tar -xzvf jdk-8u241-Linux-x64.tar.gz -C /bigdata
+- Extract the archive to installation path, 
+
+``hdpuser@master-node:/bigdata$ tar -xzvf jdk-8u241-Linux-x64.tar.gz``
 		
-	## Setup Environment variables
-		cd ~
-		vi .bash_profile
-		## Add the below at the end of file
+- Setup Environment variables
+		
+``hdpuser@master-node:/bigdata$ cd ~``
+
+``hdpuser@master-node:~$ vi .bashrc``  --add the below at the end of the file
+			
 			export JAVA_HOME=/bigdata/jdk1.8.0_241
 			export PATH=$PATH:$JAVA_HOME/bin
 			
-		--after save the bash_profile load it
-		source .bash_profile
-		
-			The .bash_profile file should like this
-			---------------------------------------
-			# .bash_profile
+--after save the .bashrc file, it should like the below
+	
+	----------------------------------------------------------------------------
+	# User specific environment and startup programs
 
-			# Get the aliases and functions
-			if [ -f ~/.bashrc ]; then
-					. ~/.bashrc
-			fi
+	export PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
-			# User specific environment and startup programs
+	# Setup JAVA Environment variables
+	export JAVA_HOME=/bigdata/jdk1.8.0_241
+	export PATH=$PATH:$JAVA_HOME/bin
+	----------------------------------------------------------------------------
 
-			export PATH=$PATH:$HOME/.local/bin:$HOME/bin
+``hdpuser@master-node:~$ source .bashrc`` --load the .bashrc file
 
-			# Setup JAVA Environment variables
-			export JAVA_HOME=/bigdata/jdk1.8.0_241
-			export PATH=$PATH:$JAVA_HOME/bin
-			---------------------------------------
+- Install Java
+``hdpuser@master-node:~$ sudo update-alternatives --install "/usr/bin/java" "java" "/bigdata/jdk1.8.0_241/bin/java" 0``
 
-		## Install Java
-		sudo update-alternatives --install "/usr/bin/java" "java" "/bigdata/jdk1.8.0_241/bin/java" 0
-		sudo update-alternatives --install "/usr/bin/javac" "javac" "/bigdata/jdk1.8.0_241/bin/javac" 0
-		sudo update-alternatives --set java /bigdata/jdk1.8.0_241/bin/java
-		sudo update-alternatives --set javac /bigdata/jdk1.8.0_241/bin/javac
-		java -version  ## To check
+``hdpuser@master-node:~$ sudo update-alternatives --install "/usr/bin/javac" "javac" "/bigdata/jdk1.8.0_241/bin/javac" 0``
+
+``hdpuser@master-node:~$ sudo update-alternatives --set java /bigdata/jdk1.8.0_241/bin/java``
+
+``hdpuser@master-node:~$ sudo update-alternatives --set javac /bigdata/jdk1.8.0_241/bin/javac``
+
+``hdpuser@master-node:~$ java -version``  ## To check
+
+	hdpuser@master-node:~$ java -version
+	java version "1.8.0_241"
+	Java(TM) SE Runtime Environment (build 1.8.0_241-b07)
+	Java HotSpot(TM) 64-Bit Server VM (build 25.241-b07, mixed mode)
+
 			
 ### Installing Hadoop					     
 	
