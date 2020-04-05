@@ -459,15 +459,15 @@
 		
 ``hdpuser@master-node:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
 			
-	master-node  #(if you don't want this node to be DataNode, remove this line from the workers file)
+	master-node  # if you don't want this node to be DataNode, remove this line from the workers file)
 	slave-node-1
 
 - Modify file: hdfs-site.xml  
 > If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
 		
-``hdpuser@master-node:~$ vi hdfs-site.xml``  --copy hdfs-site.xml file
-
 >> on the master-node host:
+
+``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 
 	<configuration>
 	   <property>
@@ -493,6 +493,8 @@
 	</configuration>
 
 >> on the slave_node-1 host:
+
+``hdpuser@slave-node-1:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 
 	<configuration>
 	   <property>
