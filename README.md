@@ -370,9 +370,8 @@
 			
 ###### Default Web Interfaces
 	
-> NameNode	http://master-node:9870/ 	Default HTTP port is 9870. 
-
-> ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
+	NameNode	> http://master-node:9870/ 	Default HTTP port is 9870. 
+	ResourceManager	> http://master-node:8080/	Default HTTP port is 8080.
 		
 ###### Stop
 
