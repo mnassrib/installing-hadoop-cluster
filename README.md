@@ -631,3 +631,5 @@
 ###### Stop Hadoop
 		
 ``hdpuser@master-node:~$ stop-all.sh``
+
+![stophadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/stophadoop.png)
