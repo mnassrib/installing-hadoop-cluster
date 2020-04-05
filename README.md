@@ -555,14 +555,13 @@
 	2815 DataNode
 
 ###### Default Web Interfaces
-		NameNode	http://master-node:9870/ 	Default HTTP port is 9870.
+	NameNode	http://master-node:9870/ 	Default HTTP port is 9870.
 		
-		![NameNode](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node9870.png)
-
+![NameNode](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node9870.png)
+	
+	ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
 		
-		ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
-		
-		![ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node8080.png)
+![ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node8080.png)
 
 ###### Get report
 		hdfs dfsadmin -report 	--this command should return something like
