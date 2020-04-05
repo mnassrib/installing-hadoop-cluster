@@ -528,33 +528,37 @@
 
 ## 2- Starting Hadoop					  
 
-	## Format the NameNode on master-node
-		hdfs namenode -format
-	
-	## Start Hadoop on master-node
-		##Start
-			start-all.sh
-
-		##Check hadoop processes are running on master-node
-			jps 	--this command should display something like 
-			4962 NodeManager
-			4851 ResourceManager
-			4292 NameNode
-			4407 DataNode
-			5320 Jps
-			4590 SecondaryNameNode
+- Format the NameNode on master-node
 		
-		##Check hadoop processes are running on slave-node-1
-			jps 	--this command should display something like 
-			3056 Jps
-			2925 NodeManager
-			2815 DataNode
+``hdpuser@master-node:~$ hdfs namenode -format``
+	
+- Start Hadoop on master-node
+		
+###### Start
+			
+``hdpuser@master-node:~$ start-all.sh``
 
-	## Default Web Interfaces
+###### Check hadoop processes are running on master-node
+			
+	hdpuser@master-node:~$ jps 	--this command should display something like 
+	4962 NodeManager
+	4851 ResourceManager
+	4292 NameNode
+	4407 DataNode
+	5320 Jps
+	4590 SecondaryNameNode
+		
+###### Check hadoop processes are running on slave-node-1
+	hdpuser@slave-node-1:~$ jps 	--this command should display something like 
+	3056 Jps
+	2925 NodeManager
+	2815 DataNode
+
+###### Default Web Interfaces
 		NameNode	http://master-node:9870/ 	Default HTTP port is 9870.
 		ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
 
-	## Get report
+###### Get report
 		hdfs dfsadmin -report 	--this command should return something like
 		``
 		Configured Capacity: 39891271680 (37.15 GB)
