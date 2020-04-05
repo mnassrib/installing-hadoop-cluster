@@ -555,76 +555,76 @@
 	2815 DataNode
 
 ###### Default Web Interfaces
-	NameNode	http://master-node:9870/ 	Default HTTP port is 9870.
+	NameNode	> http://master-node:9870/ 	Default HTTP port is 9870.
 		
 ![NameNode](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node9870.png)
 	
-	ResourceManager	http://master-node:8080/	Default HTTP port is 8080.
+	ResourceManager	> http://master-node:8080/	Default HTTP port is 8080.
 		
 ![ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node8080.png)
 
 ###### Get report
-		hdfs dfsadmin -report 	--this command should return something like
-		``
-		Configured Capacity: 39891271680 (37.15 GB)
-		Present Capacity: 25074253824 (23.35 GB)
-		DFS Remaining: 25074204672 (23.35 GB)
-		DFS Used: 49152 (48 KB)
-		DFS Used%: 0.00%
-		Replicated Blocks:
-				Under replicated blocks: 0
-				Blocks with corrupt replicas: 0
-				Missing blocks: 0
-				Missing blocks (with replication factor 1): 0
-				Pending deletion blocks: 0
-		Erasure Coded Block Groups:
-				Low redundancy block groups: 0
-				Block groups with corrupt internal blocks: 0
-				Missing block groups: 0
-				Pending deletion blocks: 0
 
-		-------------------------------------------------
-		Live datanodes (2):
+	hdpuser@master-node:~$ hdfs dfsadmin -report 	--this command should return something like
+	Configured Capacity: 39891271680 (37.15 GB)
+	Present Capacity: 25074253824 (23.35 GB)
+	DFS Remaining: 25074204672 (23.35 GB)
+	DFS Used: 49152 (48 KB)
+	DFS Used%: 0.00%
+	Replicated Blocks:
+			Under replicated blocks: 0
+			Blocks with corrupt replicas: 0
+			Missing blocks: 0
+			Missing blocks (with replication factor 1): 0
+			Pending deletion blocks: 0
+	Erasure Coded Block Groups:
+			Low redundancy block groups: 0
+			Block groups with corrupt internal blocks: 0
+			Missing block groups: 0
+			Pending deletion blocks: 0
 
-		Name: 192.xxx.x.xx:9866 (master-node)
-		Hostname: master-node
-		Decommission Status : Normal
-		Configured Capacity: 19945635840 (18.58 GB)
-		DFS Used: 24576 (24 KB)
-		Non DFS Used: 6375096320 (5.94 GB)
-		DFS Remaining: 12533735424 (11.67 GB)
-		DFS Used%: 0.00%
-		DFS Remaining%: 62.84%
-		Configured Cache Capacity: 0 (0 B)
-		Cache Used: 0 (0 B)
-		Cache Remaining: 0 (0 B)
-		Cache Used%: 100.00%
-		Cache Remaining%: 0.00%
-		Xceivers: 1
-		Last contact: Tue Mar 31 22:46:39 CEST 2020
-		Last Block Report: Tue Mar 31 22:42:43 CEST 2020
-		Num of Blocks: 0
+	-------------------------------------------------
+	Live datanodes (2):
+
+	Name: 192.xxx.x.1:9866 (master-node)
+	Hostname: master-node
+	Decommission Status : Normal
+	Configured Capacity: 19945635840 (18.58 GB)
+	DFS Used: 24576 (24 KB)
+	Non DFS Used: 6375096320 (5.94 GB)
+	DFS Remaining: 12533735424 (11.67 GB)
+	DFS Used%: 0.00%
+	DFS Remaining%: 62.84%
+	Configured Cache Capacity: 0 (0 B)
+	Cache Used: 0 (0 B)
+	Cache Remaining: 0 (0 B)
+	Cache Used%: 100.00%
+	Cache Remaining%: 0.00%
+	Xceivers: 1
+	Last contact: Tue Mar 31 22:46:39 CEST 2020
+	Last Block Report: Tue Mar 31 22:42:43 CEST 2020
+	Num of Blocks: 0
 
 
-		Name: 192.xxx.x.xx:9866 (slave-node-1)
-		Hostname: slave-node-1
-		Decommission Status : Normal
-		Configured Capacity: 19945635840 (18.58 GB)
-		DFS Used: 24576 (24 KB)
-		Non DFS Used: 6368362496 (5.93 GB)
-		DFS Remaining: 12540469248 (11.68 GB)
-		DFS Used%: 0.00%
-		DFS Remaining%: 62.87%
-		Configured Cache Capacity: 0 (0 B)
-		Cache Used: 0 (0 B)
-		Cache Remaining: 0 (0 B)
-		Cache Used%: 100.00%
-		Cache Remaining%: 0.00%
-		Xceivers: 1
-		Last contact: Tue Mar 31 22:46:38 CEST 2020
-		Last Block Report: Tue Mar 31 22:42:38 CEST 2020
-		Num of Blocks: 0
-		``
+	Name: 192.xxx.x.2:9866 (slave-node-1)
+	Hostname: slave-node-1
+	Decommission Status : Normal
+	Configured Capacity: 19945635840 (18.58 GB)
+	DFS Used: 24576 (24 KB)
+	Non DFS Used: 6368362496 (5.93 GB)
+	DFS Remaining: 12540469248 (11.68 GB)
+	DFS Used%: 0.00%
+	DFS Remaining%: 62.87%
+	Configured Cache Capacity: 0 (0 B)
+	Cache Used: 0 (0 B)
+	Cache Remaining: 0 (0 B)
+	Cache Used%: 100.00%
+	Cache Remaining%: 0.00%
+	Xceivers: 1
+	Last contact: Tue Mar 31 22:46:38 CEST 2020
+	Last Block Report: Tue Mar 31 22:42:38 CEST 2020
+	Num of Blocks: 0
 		
-	## Stop Hadoop on master-node
-		stop-all.sh
+###### Stop Hadoop on master-node
+		
+``hdpuser@master-node:~$ stop-all.sh``
