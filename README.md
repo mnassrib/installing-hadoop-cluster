@@ -538,6 +538,7 @@
 ###### Start
 			
 ``hdpuser@master-node:~$ start-all.sh``
+
 ![starthadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/starthadoop.PNG)
 
 ###### Check hadoop processes are running on master-node
@@ -563,7 +564,7 @@
 	
 	ResourceManager	> http://master-node:8080/	Default HTTP port is 8080.
 		
-![ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node8080.png)
+![ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node8080.PNG)
 
 ###### Get report
 
