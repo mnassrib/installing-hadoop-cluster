@@ -73,7 +73,11 @@
 
 ``hdpuser@master-node:~$ sudo whoami``  --run any command that requires superuser access. For example, this should tell you that you are the root.
 
-	## Add Hadoop user to sudoers file (*), for more details see https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
+	hdpuser@master-node:~$ sudo whoami
+	[sudo] password for hdpuser:
+	root
+
+- Add Hadoop user to sudoers file (*), for more details see https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
 		## visudo -f /etc/sudoers
 		
 		and under the below section
