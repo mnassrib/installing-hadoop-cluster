@@ -210,214 +210,151 @@
 		
 ``hdpuser@master-node:~$ source .bashrc`` --after save the bashrc, load it
 			
-	## Create directore for Hadoop Data for (NameNode & DataNode)
-		mkdir /bigdata/HadoopData
-		mkdir /bigdata/HadoopData/namenode
-		mkdir /bigdata/HadoopData/datanode
-	
-	## Configure Hadoop
-		cd $HADOOP_CONF_DIR 		#check the environment variables you just added
-	
-	## Modify file: core-site.xml
-		vi core-site.xml  --copy core-site.xml file
+- Create directore for Hadoop Data for (NameNode & DataNode)
 		
-		<configuration>
-		   <property>
-			   <name>fs.defaultFS</name>
-			   <value>hdfs://master-node:9000</value>
-		   </property>
-		</configuration>
-		
-	## Modify file: hdfs-site.xml  ## on the NameNode
-		## on the NameNode server if you need DataNode, Set the parameter "dfs.datanode.data.dir"
-		vi hdfs-site.xml  --copy hdfs-site.xml file
-		
-		<configuration>
-		   <property>
-			   <name>dfs.namenode.name.dir</name>
-			   <value>file:///bigdata/HadoopData/namenode</value>
-		   </property>
-		   <property>
-			   <name>dfs.datanode.data.dir</name>
-			   <value>file:///bigdata/HadoopData/datanode</value>
-		   </property>
-		   <property>
-			   <name>dfs.blocksize</name>
-			   <value>134217728</value>
-		   </property>
-		   <property>
-			   <name>dfs.replication</name>
-			   <value>1</value>
-		   </property>
-		   <property>
-			   <name>dfs.permissions</name>
-			   <value>false</value>
-		   </property>
-		</configuration>
+``hdpuser@master-node:~$ mkdir /bigdata/HadoopData``
+
+``hdpuser@master-node:~$ mkdir /bigdata/HadoopData/namenode``
+
+``hdpuser@master-node:~$ mkdir /bigdata/HadoopData/datanode``
 	
-	## Modify file: hdfs-site.xml  
-		vi hdfs-site.xml  --copy hdfs-site.xml file
-			## on the other DataNode servers you have to remove "dfs.namenode.name.dir"
-	
-	## Modify file: mapred-site.xml  
-		vi mapred-site.xml  --copy mapred-site.xml file
+- Configure Hadoop
 		
-		<configuration>
-		   <property>
-			   <name>mapreduce.framework.name</name>
-			   <value>yarn</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.jobhistory.webapp.address</name>
-			   <value>master-node:19888</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.jobhistory.intermediate-done-dir</name>
-			   <value>var/log/hadoop/tmp</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.jobhistory.done-dir</name>
-			   <value>var/log/hadoop/done</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.map.memory.mb</name>
-			   <value>512</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.reduce.memory.mb</name>
-			   <value>512</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.map.java.opts</name>
-			   <value>-Xmx512M</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.job.maps</name>
-			   <value>2</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.reduce.java.opts</name>
-			   <value>-Xmx512M</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.task.io.sort.mb</name>
-			   <value>128</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.task.io.sort.factor</name>
-			   <value>15</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.reduce.shuffle.parallelcopies</name>
-			   <value>2</value>
-		   </property>
-		   <property>
-			   <name>yarn.app.mapreduce.am.env</name>
-			   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.1</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.map.env</name>
-			   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.1</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.reduce.env</name>
-			   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.1</value>
-		   </property>
-		   <property>
-			   <name>mapreduce.application.classpath</name>
-			   <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
-		   </property>
-		</configuration>
+``hdpuser@master-node:~$ cd $HADOOP_CONF_DIR``  ## check the environment variables you just added
 	
-	## Modify file: yarn-site.xml  
-		vi yarn-site.xml  --copy yarn-site.xml file
+- Modify file: core-site.xml
 		
-		<configuration>
-		   <property>
-			   <name>yarn.log.aggregation-enable</name>
-			   <value>true</value>
-		   </property>
-		   <property>
-			   <name>yarn.resourcemanager.address</name>
-			   <value>master-node:8050</value>
-		   </property>
-		   <property>
-			   <name>yarn.resourcemanager.scheduler.address</name>
-			   <value>master-node:8030</value>
-		   </property>
-		   <property>
-			   <name>yarn.resourcemanager.resource-tracker.address</name>
-			   <value>master-node:8025</value>
-		   </property>
-		   <property>
-			   <name>yarn.resourcemanager.admin.address</name>
-			   <value>master-node:8011</value>
-		   </property>
-		   <property>
-			   <name>yarn.resourcemanager.webapp.address</name>
-			   <value>master-node:8080</value>
-		   </property>
-		   <property>
-			   <name>yarn.nodemanager.env-whitelist</name>
-			   <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,
-			   HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
-		   </property>
-		   <property>
-			   <name>yarn.resourcemanager.webapp.https.address</name>
-			   <value>master-node:8090</value>
-		   </property>
-		   <property>
-			   <name>yarn.resourcemanager.hostname</name>
-			   <value>master-node</value>
-		   </property>
-		   <property>
-			   <name>yarn.resourcemanager.scheduler.class</name>
-			   <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
-		   </property>
-		   <property>
-			   <name>yarn.nodemanager.local-dirs</name>
-			   <value>file:///var/log/hadoop</value>
-		   </property>
-			  <property>
-			   <name>yarn.nodemanager.log-dirs</name>
-			   <value>file:///var/log/hadoop</value>
-		   </property>
-		   <property>
-			   <name>yarn.nodemanager.remote-app-log-dir</name>
-			   <value>hdfs://master-node:9870/tmp/hadoop-yarn</value>
-		   </property>
-		   <property>
-			   <name>yarn.nodemanager.remote-app-log-dir-suffix</name>
-			   <value>logs</value>
-		   </property>
-		   <property>
-			   <name>yarn.nodemanager.aux-services</name>
-			   <value>mapreduce_shuffle</value>
-		   </property>
-		   <property>
-			   <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>  
-			   <value>org.apache.hadoop.mapred.ShuffleHandler</value>
-		   </property>
-		</configuration>
+``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi core-site.xml``  --copy core-site.xml file
 		
-	## Modify file: hadoop-env.sh       
-		Edit hadoop environment file by adding the follwing environment variables under the section 
-		"Set Hadoop-specific environment variables here.":  
-		vi hadoop-env.sh  --copy hadoop-env.sh  
-			export JAVA_HOME=/bigdata/jdk1.8.0_241
-			export HADOOP_LOG_DIR=/var/log/hadoop
-			export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=/bigdata/hadoop-3.1.1/lib/native"
-			export HADOOP_COMMON_LIB_NATIVE_DIR=/bigdata/hadoop-3.1.1/lib/native
+	<configuration>
+	   <property>
+		   <name>fs.defaultFS</name>
+		   <value>hdfs://master-node:9000</value>
+	   </property>
+	</configuration>
 		
-	## Create workers file
-		vi workers  --copy worhers file
-			## write line for each DataNode Server
-			master-node 
+- Modify file: hdfs-site.xml  ## on the NameNode
 	
-	## Format the NameNode
-		hdfs namenode -format
+	## on the NameNode server if you need DataNode, set the parameter "dfs.datanode.data.dir"
+
+``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
+		
+	<configuration>
+	   <property>
+		   <name>dfs.namenode.name.dir</name>
+		   <value>file:///bigdata/HadoopData/namenode</value>
+	   </property>
+	   <property>
+		   <name>dfs.datanode.data.dir</name>
+		   <value>file:///bigdata/HadoopData/datanode</value>
+	   </property>
+	   <property>
+		   <name>dfs.blocksize</name>
+		   <value>134217728</value>
+	   </property>
+	   <property>
+		   <name>dfs.replication</name>
+		   <value>1</value>
+	   </property>
+	   <property>
+		   <name>dfs.permissions</name>
+		   <value>false</value>
+	   </property>
+	</configuration>
+
+- Modify file: yarn-site.xml  
+		
+``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi yarn-site.xml``  --copy yarn-site.xml file
+		
+	<configuration>
+	   <property>
+		   <name>yarn.log.aggregation-enable</name>
+		   <value>true</value>
+	   </property>
+	   <property>
+		   <name>yarn.resourcemanager.address</name>
+		   <value>master-node:8050</value>
+	   </property>
+	   <property>
+		   <name>yarn.resourcemanager.scheduler.address</name>
+		   <value>master-node:8030</value>
+	   </property>
+	   <property>
+		   <name>yarn.resourcemanager.resource-tracker.address</name>
+		   <value>master-node:8025</value>
+	   </property>
+	   <property>
+		   <name>yarn.resourcemanager.admin.address</name>
+		   <value>master-node:8011</value>
+	   </property>
+	   <property>
+		   <name>yarn.resourcemanager.webapp.address</name>
+		   <value>master-node:8080</value>
+	   </property>
+	   <property>
+		   <name>yarn.nodemanager.env-whitelist</name>
+		   <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+	   </property>
+	   <property>
+		   <name>yarn.resourcemanager.webapp.https.address</name>
+		   <value>master-node:8090</value>
+	   </property>
+	   <property>
+		   <name>yarn.resourcemanager.hostname</name>
+		   <value>master-node</value>
+	   </property>
+	   <property>
+		   <name>yarn.resourcemanager.scheduler.class</name>
+		   <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+	   </property>
+	   <property>
+		   <name>yarn.nodemanager.local-dirs</name>
+		   <value>file:///var/log/hadoop</value>
+	   </property>
+	      <property>
+		   <name>yarn.nodemanager.log-dirs</name>
+		   <value>file:///var/log/hadoop</value>
+	   </property>
+	   <property>
+		   <name>yarn.nodemanager.remote-app-log-dir</name>
+		   <value>hdfs://master-node:9870/tmp/hadoop-yarn</value>
+	   </property>
+	   <property>
+		   <name>yarn.nodemanager.remote-app-log-dir-suffix</name>
+		   <value>logs</value>
+	   </property>
+	   <property>
+		   <name>yarn.nodemanager.aux-services</name>
+		   <value>mapreduce_shuffle</value>
+	   </property>
+	   <property>
+		   <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>  
+		   <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+	   </property>
+		
+- Modify file: hadoop-env.sh       
+
+	Edit hadoop environment file by adding the follwing environment variables under the section "Set Hadoop-specific environment variables here.":  
+		
+``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hadoop-env.sh``  --copy hadoop-env.sh  
 	
-	## Start & Stop Hadoop
+	export JAVA_HOME=/bigdata/jdk1.8.0_241
+	export HADOOP_LOG_DIR=/var/log/hadoop
+	export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=/bigdata/hadoop-3.1.1/lib/native"
+	export HADOOP_COMMON_LIB_NATIVE_DIR=/bigdata/hadoop-3.1.1/lib/native
+		
+- Create workers file
+		
+``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi workers``  --copy worhers file
+	
+	## write line for each DataNode Server
+	master-node 
+	
+- Format the NameNode
+		
+``hdpuser@master-node:~$ hdfs namenode -format``
+	
+- Start & Stop Hadoop
 		##Start
 			start-all.sh
 	
