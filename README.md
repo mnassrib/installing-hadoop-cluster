@@ -268,7 +268,7 @@
 	   </property>
 	</configuration>
 
-- Modify file: mapred-site.xml
+- Modify file: **mapred-site.xml**
 		
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi mapred-site.xml``  --copy mapred-site.xml file
 
