@@ -264,6 +264,81 @@
 	   </property>
 	</configuration>
 
+- Modify file: mapred-site.xml
+		
+``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi mapred-site.xml``  --copy mapred-site.xml file
+
+	<configuration>
+	   <property>
+		   <name>mapreduce.framework.name</name>
+		   <value>yarn</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.jobhistory.address</name>
+		   <value>master-node:10020</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.jobhistory.webapp.address</name>
+		   <value>master-node:19888</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.jobhistory.intermediate-done-dir</name>
+		   <value>var/log/hadoop/tmp</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.jobhistory.done-dir</name>
+		   <value>var/log/hadoop/done</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.map.memory.mb</name>
+		   <value>512</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.reduce.memory.mb</name>
+		   <value>512</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.map.java.opts</name>
+		   <value>-Xmx512M</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.job.maps</name>
+		   <value>2</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.reduce.java.opts</name>
+		   <value>-Xmx512M</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.task.io.sort.mb</name>
+		   <value>128</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.task.io.sort.factor</name>
+		   <value>15</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.reduce.shuffle.parallelcopies</name>
+		   <value>2</value>
+	   </property>
+	   <property>
+		   <name>yarn.app.mapreduce.am.env</name>
+		   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.1</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.map.env</name>
+		   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.1</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.reduce.env</name>
+		   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.1</value>
+	   </property>
+	   <property>
+		   <name>mapreduce.application.classpath</name>
+		   <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+	   </property>
+	</configuration>
+
 - Modify file: yarn-site.xml  
 		
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi yarn-site.xml``  --copy yarn-site.xml file
