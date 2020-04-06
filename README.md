@@ -75,7 +75,8 @@
 
 ![sudowhoami](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/sudowhoami.png)
 
-- Add Hadoop user to sudoers file (*), for more details see [link] (https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61)
+- Add Hadoop user to sudoers file (*), for more details see [link].
+[link] (https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61)
 
 ``root@master-node:~# visudo -f /etc/sudoers``  --and under the below section add
 	
