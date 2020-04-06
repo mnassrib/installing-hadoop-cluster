@@ -349,7 +349,7 @@
 		
 	<configuration>
 	   <property>
-		   <name>yarn.log.aggregation-enable</name>
+		   <name>yarn.log-aggregation-enable</name>
 		   <value>true</value>
 	   </property>
 	   <property>
@@ -392,7 +392,7 @@
 		   <name>yarn.nodemanager.local-dirs</name>
 		   <value>file:///var/log/hadoop</value>
 	   </property>
-	      <property>
+		  <property>
 		   <name>yarn.nodemanager.log-dirs</name>
 		   <value>file:///var/log/hadoop</value>
 	   </property>
@@ -412,6 +412,7 @@
 		   <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>  
 		   <value>org.apache.hadoop.mapred.ShuffleHandler</value>
 	   </property>
+	</configuration>
 		
 - Modify file: hadoop-env.sh       
 > Edit hadoop environment file by adding the follwing environment variables under the section "Set Hadoop-specific environment variables here.":  
