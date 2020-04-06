@@ -379,6 +379,11 @@
 
 > # Install Hadoop with NameNode & DataNodes on Multi Nodes
 
+In this section, we proceed to perform a multi node cluster. Only two virtual machines (nodes) will be considered. If you would a cluster composed of more than two nodes, you can applied the same steps that will be exposed below. 
+
+Assuming that the hostnames and ip addresses of the two nodes are the following:  
+- master-node 	192.xxx.x.1
+- slave-node-1 	192.xxx.x.2
 
 ## 1- Clone the master-node host created above
 ### Commands with root	
