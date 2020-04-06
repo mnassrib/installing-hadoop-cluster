@@ -194,7 +194,7 @@
 ``hdpuser@master-node:/bigdata$ cd``  --to move to your home directory
 
 ``hdpuser@master-node:~$ vi .bashrc``  --add the following under the Java Environment Variables section into the .bashrc file
-
+	
 	# Setup Hadoop Environment variables
 	export HADOOP_HOME=/bigdata/hadoop-3.1.1
 	export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
@@ -210,10 +210,8 @@
 	export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
 	export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
 
+	export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$HADOOP_CONF_DIR:$HADOOP_COMMON_HOME/*:$HADOOP_COMMON_HOME/lib/*:$HADOOP_HDFS_HOME/*:$HADOOP_HDFS_HOME/lib/*:$HADOOP_MAPRED_HOME/*:$HADOOP_MAPRED_HOME/lib/*:$HADOOP_YARN_HOME/*:$HADOOP_YARN_HOME/lib/*
 
-	export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$HADOOP_CONF_DIR:$HADOOP_COMMON_HOME/*:$HADOOP_COMMON_HOME/lib/*:$HADOOP_HDFS_HOME/*:$HADOOP_HDFS_H$
-
-		
 ``hdpuser@master-node:~$ source .bashrc`` --after save the .bashrc file, load it
 			
 - Create directore for Hadoop Data for (NameNode & DataNode)
