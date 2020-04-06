@@ -532,6 +532,8 @@
 - Format the NameNode
 		
 ``hdpuser@master-node:~$ hdfs namenode -format``
+![format1](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/format1.png)
+![format2](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/format2.png)
 	
 - Start Hadoop
 		
