@@ -63,7 +63,9 @@
 
 ``root@master-node:~# usermod -aG sudo hdpuser``  --to add a user to the sudo group. This can be done also according to (*) cited below
 		
-``root@master-node:~# getent group sudo``  --to verify if the new Debian sudo user was added to the group, for more details see https://phoenixnap.com/kb/create-a-sudo-user-on-debian
+``root@master-node:~# getent group sudo``  --to verify if the new Debian sudo user was added to the group, for more details see this [site][verifsudo]. 
+
+[verifsudo]: https://phoenixnap.com/kb/create-a-sudo-user-on-debian
 
 ``root@master-node:~# deluser --remove-home username`` --to delete username
 		
@@ -75,7 +77,7 @@
 
 ![sudowhoami](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/sudowhoami.png)
 
-- Add Hadoop user to sudoers file (*), for more details see [link][sudo].
+- Add Hadoop user to sudoers file (*), for more details see this [link][sudo].
 
 [sudo]: https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
 
