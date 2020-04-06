@@ -110,9 +110,9 @@
 
 ``hdpuser@master-node:~$ ssh hdpuser@xxxxxxxx``
 
-	yes
+	Are you sure you want to continue connecting (yes/no)? yes
 	
-``hdpuser@master-node:~$ exit``
+``hdpuser@xxxxxxxx:~$ exit``
 	
 - Creating the needed directories:
 
@@ -444,7 +444,7 @@ So far, we have only one machine that is ready (master-node). We have to build a
 		
 ``hdpuser@slave-node-1:~$ ssh hdpuser@xxxx`` 
 			
-	yes
+	Are you sure you want to continue connecting (yes/no)? yes
 
 ``hdpuser@xxxx:~$ exit``
 
