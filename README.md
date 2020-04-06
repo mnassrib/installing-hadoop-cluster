@@ -218,7 +218,9 @@
 		
 ``hdpuser@master-node:~$ mkdir /bigdata/HadoopData``
 
-``hdpuser@master-node:~$ mkdir /bigdata/HadoopData/namenode``  ```json only on the NamNode server```
+``hdpuser@master-node:~$ mkdir /bigdata/HadoopData/namenode``  	```json 
+																only on the NameNode server
+																```
 
 ``hdpuser@master-node:~$ mkdir /bigdata/HadoopData/datanode``  ```json on both servers```
 	
