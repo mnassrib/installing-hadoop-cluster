@@ -240,8 +240,7 @@
 	</configuration>
 		
 - Modify file: **hdfs-site.xml**  
-
->```diff
+```diff
 - The parameter "dfs.namenode.data.dir" must be kept only on the NameNode server
 - On the NameNode server if you need DataNode, set the parameter "dfs.datanode.data.dir"
 ```
