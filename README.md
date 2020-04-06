@@ -228,7 +228,7 @@
 		
 ``hdpuser@master-node:~$ cd $HADOOP_CONF_DIR``  ## check the environment variables you just added
 	
-- Modify file: core-site.xml
+- Modify file: **core-site.xml**
 		
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi core-site.xml``  --copy core-site.xml file
 		
@@ -239,7 +239,7 @@
 	   </property>
 	</configuration>
 		
-- Modify file: hdfs-site.xml  ## on the NameNode
+- Modify file: **hdfs-site.xml**  ## on the NameNode
 	
 	> #### On the NameNode server if you need DataNode, set the parameter "dfs.datanode.data.dir"
 
@@ -343,7 +343,7 @@
 	   </property>
 	</configuration>
 
-- Modify file: yarn-site.xml  
+- Modify file: **yarn-site.xml**  
 		
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi yarn-site.xml``  --copy yarn-site.xml file
 		
@@ -414,7 +414,7 @@
 	   </property>
 	</configuration>
 		
-- Modify file: hadoop-env.sh       
+- Modify file: **hadoop-env.sh**       
 > Edit hadoop environment file by adding the follwing environment variables under the section "Set Hadoop-specific environment variables here.":  
 		
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hadoop-env.sh``  --copy hadoop-env.sh  
@@ -424,7 +424,7 @@
 	export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=/bigdata/hadoop-3.1.1/lib/native"
 	export HADOOP_COMMON_LIB_NATIVE_DIR=/bigdata/hadoop-3.1.1/lib/native
 		
-- Create workers file
+- Create **workers** file
 		
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi workers``  --copy workers file
 	
@@ -539,16 +539,16 @@ So far, we have only one machine that is ready (master-node). We have to build a
 	192.xxx.x.2	slave-node-1
 
 ### Configure Hadoop				   
-- Edit the workers file into the master-node server
+- Edit the **workers** file into the master-node server
 		
 ``hdpuser@master-node:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
 			
 	master-node  	#if you don't want this node to be DataNode, remove this line from the workers file
 	slave-node-1
 	
-> The most important thing here is to configure in particular the workers file of the master-node server because it masters the other nodes. Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master-node server workers file.
+> *The most important thing here is to configure in particular the workers file of the master-node server because it masters the other nodes. Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master-node server workers file.*
 
-- Modify file: hdfs-site.xml  
+- Modify file: **hdfs-site.xml**  
 > If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
 		
 >> on the master-node host:
