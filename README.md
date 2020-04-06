@@ -547,7 +547,8 @@ So far, we have only one machine that is ready (master-node). We have to build a
 	slave-node-1
 	
 ```diff 
-+ The most important thing here is to configure in particular the workers file on the NameNode server (master-node) because it masters the other nodes. + Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master-node server workers file.
+- The most important thing here is to configure in particular the workers file on the NameNode server (master-node) because it masters the other nodes. 
+- Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master-node server workers file.
 ```
 
 - Modify file: **hdfs-site.xml**  
