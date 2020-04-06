@@ -549,6 +549,10 @@ So far, we have only one machine that is ready (master-node). We have to build a
 ```diff 
 The most important thing here is to configure in particular the workers file on the NameNode server (master-node) because it masters the other nodes. Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master-node server workers file.
 ```
+```diff
++ du texte
++ et un plus à chaque ligne
+```
 
 - Modify file: **hdfs-site.xml**  
 > If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
