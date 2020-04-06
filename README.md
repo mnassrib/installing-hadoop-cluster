@@ -379,13 +379,15 @@
 
 > # Install Hadoop with NameNode & DataNodes on Multi Nodes
 
-In this section, we proceed to perform a multi node cluster. Only two virtual machines (nodes) will be considered. If you would a cluster composed of more than two nodes, you can applied the same steps that will be exposed below. 
+In this section, we proceed to perform a multi node cluster. Only two virtual machines (nodes) will be considered. If you would a cluster composed of more than two nodes, you can apply the same steps that will be exposed below. 
 
 Assuming that the hostnames and ip addresses of the two nodes are the following:  
-- master-node 	192.xxx.x.1
-- slave-node-1 	192.xxx.x.2
+- master-node	(ip: 192.xxx.x.1)
+- slave-node-1 	(ip: 192.xxx.x.2)
 
-## 1- Clone the master-node host created above
+So far, we have only one machine that is ready (master-node). We have to build and configure the second server. We can clone the first machine and then modify the necessary will be a good idea.
+
+## 1- Clone the master-node server created above
 ### Commands with root	
 > login as root user
 
@@ -398,13 +400,8 @@ Assuming that the hostnames and ip addresses of the two nodes are the following:
 ``root@master-node:~# service firewalld stop``
 
 ``root@master-node:~# systemctl disable firewalld``
-	
-- Change hostname and setup FQDN (considering the new hostname as "slave-node-1")
-> Display the hostname
-
-``root@master-node:~# cat /etc/hostname``
-		
-- Edit the hostname
+			
+- Edit the hostname and setup FQDN (considering the new hostname as "slave-node-1")
 
 ``root@master-node:~# vi /etc/hostname``  --remove the existing file and write the below
 			
@@ -446,9 +443,9 @@ Assuming that the hostnames and ip addresses of the two nodes are the following:
 			
 	yes
 
-``hdpuser@slave-node-1:~$ exit``
+``hdpuser@xxxx:~$ exit``
 
-- Edit the hosts file of the "master-node" host	
+- Edit the hosts file of the "master-node" server	
 
 ``hdpuser@slave-node-1:~$ ssh hdpuser@master-node``
 
@@ -463,10 +460,10 @@ Assuming that the hostnames and ip addresses of the two nodes are the following:
 		
 ``hdpuser@master-node:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
 			
-	master-node  # if you don't want this node to be DataNode, remove this line from the workers file)
+	master-node  	#if you don't want this node to be DataNode, remove this line from the workers file
 	slave-node-1
 	
-> The most important thing here is to configure in particular the workers file of the master-node server because it administers the other nodes. Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master node server work file.
+> The most important thing here is to configure in particular the workers file of the master-node server because it masters the other nodes. Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master-node server workers file.
 
 - Modify file: hdfs-site.xml  
 > If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
@@ -521,7 +518,7 @@ Assuming that the hostnames and ip addresses of the two nodes are the following:
 	   </property>
 	</configuration>
 		
-- Clean up some old files on both machines
+- Clean up some old files on both nodes
 
 ``hdpuser@master-node:~$ rm -rf /bigdata/HadoopData/namenode/*``
 
@@ -537,6 +534,7 @@ Assuming that the hostnames and ip addresses of the two nodes are the following:
 - Format the NameNode
 		
 ``hdpuser@master-node:~$ hdfs namenode -format``
+
 ![format1](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/format1.png)
 ![format2](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/format2.png)
 	
@@ -550,7 +548,7 @@ Assuming that the hostnames and ip addresses of the two nodes are the following:
 
 ###### Check hadoop processes are running on master-node
 			
-	hdpuser@master-node:~$ jps 	--this command should display something like 
+	hdpuser@master-node:~$ jps 	--this command should return something like 
 	4962 NodeManager
 	4851 ResourceManager
 	4292 NameNode
@@ -559,7 +557,7 @@ Assuming that the hostnames and ip addresses of the two nodes are the following:
 	4590 SecondaryNameNode
 		
 ###### Check hadoop processes are running on slave-node-1
-	hdpuser@slave-node-1:~$ jps 	--this command should display something like 
+	hdpuser@slave-node-1:~$ jps 	--this command should return something like 
 	3056 Jps
 	2925 NodeManager
 	2815 DataNode
