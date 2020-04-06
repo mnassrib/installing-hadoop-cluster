@@ -163,9 +163,13 @@
 
 ``hdpuser@master-node:~$ sudo update-alternatives --install "/usr/bin/javac" "javac" "/bigdata/jdk1.8.0_241/bin/javac" 0``
 
+``hdpuser@master-node:~$ sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/bigdata/jdk1.8.0_241/bin/javaws" 0``
+
 ``hdpuser@master-node:~$ sudo update-alternatives --set java /bigdata/jdk1.8.0_241/bin/java``
 
 ``hdpuser@master-node:~$ sudo update-alternatives --set javac /bigdata/jdk1.8.0_241/bin/javac``
+
+``hdpuser@master-node:~$ sudo update-alternatives --set javaws /bigdata/jdk1.8.0_241/bin/javaws``
 
 ``hdpuser@master-node:~$ java -version``  ## to check
 
