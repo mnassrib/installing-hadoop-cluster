@@ -539,7 +539,7 @@ So far, we have only one machine that is ready (master-node). We have to build a
 	192.xxx.x.2	slave-node-1
 
 ### Configure Hadoop				   
-- Edit the **workers** file into the master-node server
+- Edit the **workers** file on the NameNode (master-node) server
 		
 ``hdpuser@master-node:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
 			
