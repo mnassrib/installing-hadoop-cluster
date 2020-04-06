@@ -49,6 +49,7 @@
 ``root@debian:~# hostname`` --should return 
 	
 	master-node
+	
 ``root@debian:~# hostname -f`` --should return 
 
 	master-node
@@ -72,9 +73,7 @@
 
 ``hdpuser@master-node:~$ sudo whoami``  --run any command that requires superuser access. For example, this should tell you that you are the root.
 
-	hdpuser@master-node:~$ sudo whoami
-	[sudo] password for hdpuser:
-	root
+![sudowhoami](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/sudowhoami.png)
 
 - Add Hadoop user to sudoers file (*), for more details see https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
 
