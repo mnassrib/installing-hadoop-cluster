@@ -239,9 +239,12 @@
 	   </property>
 	</configuration>
 		
-- Modify file: **hdfs-site.xml**  ## on the NameNode
-	
-	> #### On the NameNode server if you need DataNode, set the parameter "dfs.datanode.data.dir"
+- Modify file: **hdfs-site.xml**  
+
+>```diff
+- The parameter "dfs.namenode.data.dir" must be kept only on the NameNode server
+- On the NameNode server if you need DataNode, set the parameter "dfs.datanode.data.dir"
+```
 
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 		
