@@ -554,7 +554,7 @@ So far, we have only one machine that is ready (master-node). We have to build a
 - Modify file: **hdfs-site.xml**  
 > If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
 		
->> On the master-node server:
+>> On the NameNode & DataNode (master-node) server:
 
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 
@@ -581,7 +581,7 @@ So far, we have only one machine that is ready (master-node). We have to build a
 	   </property>
 	</configuration>
 
->> On the slave_node-1 server:
+>> On the DataNode (slave_node-1) server:
 
 ``hdpuser@slave-node-1:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 
