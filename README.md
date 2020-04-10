@@ -415,6 +415,10 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 		   <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>  
 		   <value>org.apache.hadoop.mapred.ShuffleHandler</value>
 	   </property>
+	   <property>
+		   <name>yarn.log.server.url</name>
+		   <value>http://master-node:19888/jobhistory/logs</value>
+	   </property>
 	</configuration>
 		
 - Modify file: **hadoop-env.sh**       
