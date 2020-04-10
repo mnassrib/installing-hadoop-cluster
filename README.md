@@ -449,13 +449,26 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 	
 ###### Check hadoop processes are running
 
-	hdpuser@master-node:~$ jps 	--this command should return something like
-	5968 SecondaryNameNode
-	5794 DataNode
-	6227 ResourceManager
-	5684 NameNode
-	6342 NodeManager
-	6697 Jps
+	hdpuser@master-node:~$ jps  --this command should return something like
+	1889 ResourceManager
+	1300 NameNode
+	1993 NodeManager
+	2426 Jps
+	1403 DataNode
+	1566 SecondaryNameNode
+
+> If you want to see the logs on the Web UI, after the application is terminated, then you need to start running the MapReduce Job History server also:
+
+``hdpuser@master-node:~$ mr-jobhistory-daemon.sh start historyserver``
+
+	hdpuser@master-node:~$ jps  --this command should return something like
+	1889 ResourceManager
+	1300 NameNode
+	1093 JobHistoryServer
+	1993 NodeManager
+	2426 Jps
+	1403 DataNode
+	1566 SecondaryNameNode
 			
 ###### Default Web Interfaces
 	
@@ -465,7 +478,6 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 ###### Stop
 
 ``hdpuser@master-node:~$ stop-all.sh``
-
 
 > # Install Hadoop with NameNode & DataNodes on Multi Nodes
 
