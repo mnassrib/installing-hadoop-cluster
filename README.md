@@ -186,7 +186,9 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 			
 ### Installing Hadoop					     
 	
-- Download Hadoop archive file "hadoop-3.1.1.tar.gz", and follow installation steps:
+- Download Hadoop archive file "[hadoop-3.1.1.tar.gz][hadoop]", and follow installation steps:
+
+[hadoop]: https://hadoop.apache.org/releases.html
 
 ``hdpuser@master-node:~$ cd /bigdata``
 		
