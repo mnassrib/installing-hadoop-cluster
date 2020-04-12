@@ -426,7 +426,7 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 	</configuration>
 		
 - Modify file: **hadoop-env.sh**       
-> Edit hadoop environment file by adding the follwing environment variables under the section "Set Hadoop-specific environment variables here.":  
+> Edit hadoop environment file by adding the following environment variables under the section "Set Hadoop-specific environment variables here.":  
 		
 ``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hadoop-env.sh``  --copy hadoop-env.sh  
 	
