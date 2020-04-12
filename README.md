@@ -494,7 +494,7 @@ Assuming that the hostnames, ip addresses and services (NameNode and/or DataNode
 
 | Hostname   |      IP Address     |  NameNode |  DataNode
 |----------|-------------|:------:|:------:|
-| master-node |  192.xxx.x.1 | x | x |
+| master-node |  192.xxx.x.1 | - [x] | x |
 | slave-node-1 |    192.xxx.x.2   |   | x |
 
 So far, we have only one machine that is ready (master-node). We have to build and configure the second server. We can clone the first machine and then modify the necessary will be a good idea.
