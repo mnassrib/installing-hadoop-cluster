@@ -610,7 +610,7 @@ So far, we have only one machine that is ready (master-node). We have to build a
 	   </property>
 	</configuration>
 
->> On the DataNode (slave_node-1) server:
+>> On the DataNode (slave-node-1) server:
 
 ``hdpuser@slave-node-1:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 
