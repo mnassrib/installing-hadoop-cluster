@@ -490,7 +490,7 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 
 In this section, we proceed to perform a multi node cluster. Only two virtual machines (nodes) will be considered. If you would a cluster composed of more than two nodes, you can apply the same steps that will be exposed below. 
 
-Assuming that the hostnames, ip addresses and services (NameNode and/or DataNode) of the two nodes are the following:  
+Assuming that the hostnames, ip addresses and services (NameNode and/or DataNode) of the two nodes will be as follows:
 
 | Hostname   |      IP Address     |  NameNode |  DataNode
 |----------|-------------|:------:|:------:|
