@@ -137,7 +137,9 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 
 ### Installing Java					           
 
-- Download JDK version "jdk-8u241-Linux-x64.tar.gz", and follow installation steps:
+- Download JDK version "[jdk-8u241-Linux-x64.tar.gz][java]", and follow installation steps:
+
+[java]: https://www.oracle.com/java/technologies/javase-jdk8-downloads.html
 
 ``hdpuser@master-node:~$ cd /bigdata``
 		
