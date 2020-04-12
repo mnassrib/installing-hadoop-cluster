@@ -480,7 +480,8 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 |----------|-------------|------:|
 | **NameNode** |  **http://master-node:9870/** | **9870** |
 | ResourceManager |    http://master-node:8080/   |   8080 |
-		
+| MapReduce JobHistory Server |    http://master-node:19888/   |   19888 |
+
 ###### Stop
 
 ``hdpuser@master-node:~$ stop-all.sh``
