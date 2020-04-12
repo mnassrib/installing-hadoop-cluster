@@ -476,12 +476,8 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 			
 ###### Default Web Interfaces
 	
-* NameNode		> http://master-node:9870/ 	Default HTTP port is 9870. 
-* ResourceManager		> http://master-node:8080/	Default HTTP port is 8080.
-
-
 | Service   |      Address web      |  Default HTTP port |
-|----------|:-------------:|------:|
+|----------|-------------|------:|
 | **NameNode** |  **http://master-node:9870/** | **9870** |
 | ResourceManager |    http://master-node:8080/   |   8080 |
 		
