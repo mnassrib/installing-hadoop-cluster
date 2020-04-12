@@ -497,7 +497,7 @@ Assuming that the hostnames, ip addresses and services (NameNode and/or DataNode
 | master-node |  192.xxx.x.1 | &check; | &check; |
 | slave-node-1 |    192.xxx.x.2   |   | &check; |
 
-So far, we have only one machine that is ready (master-node). We have to build and configure the second server. We can clone the first machine and then modify the necessary will be a good idea.
+So far, we have only one machine that is ready (master-node). We have to build and configure the second server. We can clone the first machine and then modifying the necessary parameters will be a good idea.
 
 ## 1- Clone the master-node server created above
 ### Commands with root	
