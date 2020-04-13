@@ -1,10 +1,10 @@
-# Installing Hadoop on single node as well multi node cluster using Debian 9 Linux VMs
+# Installing Hadoop on single node as well multi-node cluster using Debian 9 Linux VMs
 
-> This repository reviews all required steps to install Hadoop on single node cluster as well as multi node cluster using virtual machines with Debian 9.
+> This repository reviews all required steps to install Hadoop on single node cluster as well as multi-node cluster using virtual machines with Debian 9.
 
 > **For the success of the tutorial, we assume that you already have a virtual machine equipped with Linux OS (Debian 9). This should work in principle even with other Linux distributions. You can get Virtualbox to build virtual machines. In order to concept a cluster, you must also have the ability to procure more than one virtual machine.**
 
-The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node Cluster][nexttuto].
+The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi-Node Cluster][nexttuto].
 
 [nexttuto]: https://github.com/mnassrib/installing-spark-on-hadoop-yarn-cluster
 		
@@ -488,7 +488,7 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi Node 
 
 > # Install Hadoop with NameNode & DataNodes on Multi Nodes
 
-In this section, we proceed to perform a multi node cluster. Only two virtual machines (nodes) will be considered. If you would a cluster composed of more than two nodes, you can apply the same steps that will be exposed below. 
+In this section, we proceed to perform a multi-node cluster. Only two virtual machines (nodes) will be considered. If you would a cluster composed of more than two nodes, you can apply the same steps that will be exposed below. 
 
 Assuming that the hostnames, ip addresses and services (NameNode and/or DataNode) of the two nodes will be as follows:
 
@@ -755,6 +755,6 @@ So far, we have only one machine that is ready (master-node). We have to build a
 ![stophadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/stophadoop.png)
 
 
-The next tutorial explains [how to install Spark on Hadoop Yarn Multi Node Cluster][nexttuto].
+The next tutorial explains [how to install Spark on Hadoop Yarn Multi-Node Cluster][nexttuto].
 
 [nexttuto]: https://github.com/mnassrib/installing-spark-on-hadoop-yarn-cluster
