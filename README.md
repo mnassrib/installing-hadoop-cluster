@@ -105,7 +105,7 @@ The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi-Node 
 		
 ``hdpuser@master-node:~$ ssh-keygen -t rsa``  ## just press Enter for all choices
 
-``hdpuser@master-node:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/id_rsa.pub/authorized_keys``
+``hdpuser@master-node:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys``
 
 ``hdpuser@master-node:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-node``  --(you should be able to ssh without asking for password)
 
