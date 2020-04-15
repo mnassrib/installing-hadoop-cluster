@@ -41,7 +41,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 ``root@debian:~# systemctl disable firewalld``
 
-- Change hostname and setup FQDN (considering a hostname as "master-node")
+- Change hostname and setup FQDN (considering a hostname as "master-namenode")
 > Display the hostname
 
 ``root@debian:~# cat /etc/hostname``
@@ -50,47 +50,47 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 ``root@debian:~# vi /etc/hostname``   --remove the existing file and write the below
 	
-	master-node
+	master-namenode
 			
 ``root@debian:~# vi /etc/hosts``   --your file should look like the below
 
 	127.0.0.1	localhost	
-	192.xxx.x.1	master-node
+	192.168.1.72	master-namenode
 			
 > Type the following
 		
-``root@debian:~# hostname master-node``
+``root@debian:~# hostname master-namenode``
 		
 > To check type
 
 ``root@debian:~# hostname`` --should return 
 	
-	master-node
+	master-namenode
 	
 ``root@debian:~# hostname -f`` --should return 
 
-	master-node
+	master-namenode
 	
 - Create user for Hadoop (considering a hadoop user as "hdpuser")
 > For Debian OS users login as root and do the following:
 
-``root@master-node:~# apt-get install sudo``
+``root@master-namenode:~# apt-get install sudo``
 
-``root@master-node:~# adduser hdpuser``
+``root@master-namenode:~# adduser hdpuser``
 
-``root@master-node:~# usermod -aG sudo hdpuser``  --to add a user to the sudo group. This can be done also according to (*) cited below
+``root@master-namenode:~# usermod -aG sudo hdpuser``  --to add a user to the sudo group. This can be done also according to (*) cited below
 		
-``root@master-node:~# getent group sudo``  --to verify if the new Debian sudo user was added to the group, for more details see this [site][verifsudo]. 
+``root@master-namenode:~# getent group sudo``  --to verify if the new Debian sudo user was added to the group, for more details see this [site][verifsudo]. 
 
 [verifsudo]: https://phoenixnap.com/kb/create-a-sudo-user-on-debian
 
-``root@master-node:~# deluser --remove-home username`` --to delete username
+``root@master-namenode:~# deluser --remove-home username`` --to delete username
 		
 > Verify Sudo Access in Debian
 
-``root@master-node:~# su - hdpuser``  --switch to the user account you just created
+``root@master-namenode:~# su - hdpuser``  --switch to the user account you just created
 
-``hdpuser@master-node:~$ sudo whoami``  --run any command that requires superuser access. For example, this should tell you that you are the root.
+``hdpuser@master-namenode:~$ sudo whoami``  --run any command that requires superuser access. For example, this should tell you that you are the root.
 
 ![sudowhoami](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/sudowhoami.png)
 
@@ -98,7 +98,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 [sudo]: https://www.geek17.com/fr/content/debian-9-stretch-installer-et-configurer-sudo-61
 
-``root@master-node:~# visudo -f /etc/sudoers``  --and under the below section add
+``root@master-namenode:~# visudo -f /etc/sudoers``  --and under the below section add
 	
 	## Allow root to run any commands anywhere
 	root	ALL=(ALL)	All
@@ -109,23 +109,23 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 - Install SSH server
 		
-``hdpuser@master-node:~$ sudo apt-get install ssh``
+``hdpuser@master-namenode:~$ sudo apt-get install ssh``
 	
 - Install rsync which allows remote file synchronizations using SSH
 
-``hdpuser@master-node:~$ sudo apt-get install rsync``
+``hdpuser@master-namenode:~$ sudo apt-get install rsync``
 	
 - Generate SSH keys and setup password less SSH between Hadoop services
 		
-``hdpuser@master-node:~$ ssh-keygen -t rsa``  ## just press Enter for all choices
+``hdpuser@master-namenode:~$ ssh-keygen -t rsa``  ## just press Enter for all choices
 
-``hdpuser@master-node:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys``
+``hdpuser@master-namenode:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys``
 
-``hdpuser@master-node:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-node``  --(you should be able to ssh without asking for password)
+``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-namenode``  --(you should be able to ssh without asking for password)
 
-``hdpuser@master-node:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@xxxxxxxx``   --(if you have more than one node, you will repeat for each node)
+``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@xxxxxxxx``   --(if you have more than one node, you will repeat for each node)
 
-``hdpuser@master-node:~$ ssh hdpuser@xxxxxxxx``
+``hdpuser@master-namenode:~$ ssh hdpuser@xxxxxxxx``
 
 	Are you sure you want to continue connecting (yes/no)? yes
 	
@@ -133,17 +133,17 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	
 - Creating the needed directories:
 
-``hdpuser@master-node:~$sudo mkdir /var/log/hadoop``
+``hdpuser@master-namenode:~$sudo mkdir /var/log/hadoop``
 
-``hdpuser@master-node:~$ sudo chown -R hdpuser:hdpuser /var/log/hadoop``
+``hdpuser@master-namenode:~$ sudo chown -R hdpuser:hdpuser /var/log/hadoop``
 
-``hdpuser@master-node:~$ sudo chmod -R 770 /var/log/hadoop``
+``hdpuser@master-namenode:~$ sudo chmod -R 770 /var/log/hadoop``
 		
-``hdpuser@master-node:~$ sudo mkdir /bigdata``
+``hdpuser@master-namenode:~$ sudo mkdir /bigdata``
 
-``hdpuser@master-node:~$ sudo chown -R hdpuser:hdpuser /bigdata``
+``hdpuser@master-namenode:~$ sudo chown -R hdpuser:hdpuser /bigdata``
 
-``hdpuser@master-node:~$ sudo chmod -R 770 /bigdata``
+``hdpuser@master-namenode:~$ sudo chmod -R 770 /bigdata``
 
 
 ## 2- Intall JDK and Hadoop
@@ -155,17 +155,17 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 [java]: https://www.oracle.com/java/technologies/javase-jdk8-downloads.html
 
-``hdpuser@master-node:~$ cd /bigdata``
+``hdpuser@master-namenode:~$ cd /bigdata``
 		
 - Extract the archive to installation path, 
 
-``hdpuser@master-node:/bigdata$ tar -xzvf jdk-8u241-Linux-x64.tar.gz``
+``hdpuser@master-namenode:/bigdata$ tar -xzvf jdk-8u241-Linux-x64.tar.gz``
 		
 - Setup Environment variables
 		
-``hdpuser@master-node:/bigdata$ cd ~``
+``hdpuser@master-namenode:/bigdata$ cd ~``
 
-``hdpuser@master-node:~$ vi .bashrc``  --add the below at the end of the file
+``hdpuser@master-namenode:~$ vi .bashrc``  --add the below at the end of the file
 			
 	# User specific environment and startup programs
 	export PATH=$HOME/.local/bin:$HOME/bin:$PATH
@@ -174,25 +174,25 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	export JAVA_HOME=/bigdata/jdk1.8.0_241
 	export PATH=$JAVA_HOME/bin:$PATH
 			
-``hdpuser@master-node:~$ source .bashrc`` --load the .bashrc file
+``hdpuser@master-namenode:~$ source .bashrc`` --load the .bashrc file
 
 - Install Java
 
-``hdpuser@master-node:~$ sudo update-alternatives --install "/usr/bin/java" "java" "/bigdata/jdk1.8.0_241/bin/java" 0``
+``hdpuser@master-namenode:~$ sudo update-alternatives --install "/usr/bin/java" "java" "/bigdata/jdk1.8.0_241/bin/java" 0``
 
-``hdpuser@master-node:~$ sudo update-alternatives --install "/usr/bin/javac" "javac" "/bigdata/jdk1.8.0_241/bin/javac" 0``
+``hdpuser@master-namenode:~$ sudo update-alternatives --install "/usr/bin/javac" "javac" "/bigdata/jdk1.8.0_241/bin/javac" 0``
 
-``hdpuser@master-node:~$ sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/bigdata/jdk1.8.0_241/bin/javaws" 0``
+``hdpuser@master-namenode:~$ sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/bigdata/jdk1.8.0_241/bin/javaws" 0``
 
-``hdpuser@master-node:~$ sudo update-alternatives --set java /bigdata/jdk1.8.0_241/bin/java``
+``hdpuser@master-namenode:~$ sudo update-alternatives --set java /bigdata/jdk1.8.0_241/bin/java``
 
-``hdpuser@master-node:~$ sudo update-alternatives --set javac /bigdata/jdk1.8.0_241/bin/javac``
+``hdpuser@master-namenode:~$ sudo update-alternatives --set javac /bigdata/jdk1.8.0_241/bin/javac``
 
-``hdpuser@master-node:~$ sudo update-alternatives --set javaws /bigdata/jdk1.8.0_241/bin/javaws``
+``hdpuser@master-namenode:~$ sudo update-alternatives --set javaws /bigdata/jdk1.8.0_241/bin/javaws``
 
-``hdpuser@master-node:~$ java -version``  ## to check
+``hdpuser@master-namenode:~$ java -version``  ## to check
 
-	hdpuser@master-node:~$ java -version
+	hdpuser@master-namenode:~$ java -version
 	java version "1.8.0_241"
 	Java(TM) SE Runtime Environment (build 1.8.0_241-b07)
 	Java HotSpot(TM) 64-Bit Server VM (build 25.241-b07, mixed mode)
@@ -200,24 +200,24 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 			
 ### Installing Hadoop					     
 	
-- Download Hadoop archive file "[hadoop-3.1.1.tar.gz][hadoop]", and follow installation steps:
+- Download Hadoop archive file "[hadoop-3.1.2.tar.gz][hadoop]", and follow installation steps:
 
-[hadoop]: https://hadoop.apache.org/releases.html
+[hadoop]: https://hadoop.apache.org/release.html
 
-``hdpuser@master-node:~$ cd /bigdata``
+``hdpuser@master-namenode:~$ cd /bigdata``
 		
-- Extract the archive "hadoop-3.1.1.tar.gz", 
+- Extract the archive "hadoop-3.1.2.tar.gz", 
 		
-``hdpuser@master-node:/bigdata$ tar -zxvf hadoop-3.1.1.tar.gz``
+``hdpuser@master-namenode:/bigdata$ tar -zxvf hadoop-3.1.2.tar.gz``
 		
 - Setup Environment variables 
 
-``hdpuser@master-node:/bigdata$ cd``  --to move to your home directory
+``hdpuser@master-namenode:/bigdata$ cd``  --to move to your home directory
 
-``hdpuser@master-node:~$ vi .bashrc``  --add the following under the Java Environment Variables section into the .bashrc file
+``hdpuser@master-namenode:~$ vi .bashrc``  --add the following under the Java Environment Variables section into the .bashrc file
 	
 	# Setup Hadoop Environment variables		
-	export HADOOP_HOME=/bigdata/hadoop-3.1.1
+	export HADOOP_HOME=/bigdata/hadoop-3.1.2
 	export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 	export HADOOP_NAMENODE_OPTS="-XX:+UseParallelGC"
 	export HADOOP_MAPRED_HOME=$HADOOP_HOME
@@ -232,29 +232,34 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	export PATH=$HOME/.local/bin:$HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$PATH
 
 	export HADOOP_CLASSPATH=$HADOOP_CONF_DIR:$HADOOP_COMMON_HOME/*:$HADOOP_COMMON_HOME/lib/*:$HADOOP_HDFS_HOME/*:$HADOOP_HDFS_HOME/lib/*:$HADOOP_MAPRED_HOME/*:$HADOOP_MAPRED_HOME/lib/*:$HADOOP_YARN_HOME/*:$HADOOP_YARN_HOME/lib/*:$HADOOP_CLASSPATH
+	
+	# Control Hadoop
+	alias Start_HADOOP='$HADOOP_HOME/sbin/start-all.sh;mapred --daemon start historyserver'
+	alias Stop_HADOOP='$HADOOP_HOME/sbin/stop-all.sh;mapred --daemon stop historyserver'
 
-``hdpuser@master-node:~$ source .bashrc`` --after save the .bashrc file, load it
+
+``hdpuser@master-namenode:~$ source .bashrc`` --after save the .bashrc file, load it
 			
 - Create directore for Hadoop Data for (NameNode & DataNode)
 		
-``hdpuser@master-node:~$ mkdir /bigdata/HadoopData``
+``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData``
 
-``hdpuser@master-node:~$ mkdir /bigdata/HadoopData/namenode``  	*only on the NameNode server*
+``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/namenode``  	*only on the NameNode server*
 
-``hdpuser@master-node:~$ mkdir /bigdata/HadoopData/datanode``  	*on both servers*
+``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/datanode``  	*on both servers*
 	
 - Configure Hadoop
 		
-``hdpuser@master-node:~$ cd $HADOOP_CONF_DIR``  ## check the environment variables you just added
+``hdpuser@master-namenode:~$ cd $HADOOP_CONF_DIR``  ## check the environment variables you just added
 	
 - Modify file: **core-site.xml**
 		
-``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi core-site.xml``  --copy core-site.xml file
+``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi core-site.xml``  --copy core-site.xml file
 		
 	<configuration>
 	   <property>
 		   <name>fs.defaultFS</name>
-		   <value>hdfs://master-node:9000</value>
+		   <value>hdfs://master-namenode:9000</value>
 	   </property>
 	</configuration>
 		
@@ -264,7 +269,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 - If you need DataNode on the NameNode server, set the parameter "dfs.datanode.data.dir"
 ```
 
-``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
+``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 		
 	<configuration>
 	   <property>
@@ -291,7 +296,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 - Modify file: **mapred-site.xml**
 		
-``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi mapred-site.xml``  --copy mapred-site.xml file
+``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi mapred-site.xml``  --copy mapred-site.xml file
 
 	<configuration>
 	   <property>
@@ -300,11 +305,11 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	   </property>
 	   <property>
 		   <name>mapreduce.jobhistory.address</name>
-		   <value>master-node:10020</value>
+		   <value>master-namenode:10020</value>
 	   </property>
 	   <property>
 		   <name>mapreduce.jobhistory.webapp.address</name>
-		   <value>master-node:19888</value>
+		   <value>master-namenode:19888</value>
 	   </property>
 	   <property>
 		   <name>mapreduce.jobhistory.intermediate-done-dir</name>
@@ -348,15 +353,15 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	   </property>
 	   <property>
 		   <name>yarn.app.mapreduce.am.env</name>
-		   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.1</value>
+		   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.2</value>
 	   </property>
 	   <property>
 		   <name>mapreduce.map.env</name>
-		   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.1</value>
+		   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.2</value>
 	   </property>
 	   <property>
 		   <name>mapreduce.reduce.env</name>
-		   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.1</value>
+		   <value>HADOOP_MAPRED_HOME=/bigdata/hadoop-3.1.2</value>
 	   </property>
 	   <property>
 		   <name>mapreduce.application.classpath</name>
@@ -366,7 +371,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 - Modify file: **yarn-site.xml**  
 		
-``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi yarn-site.xml``  --copy yarn-site.xml file
+``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi yarn-site.xml``  --copy yarn-site.xml file
 		
 	<configuration>
 	   <property>
@@ -375,23 +380,23 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	   </property>
 	   <property>
 		   <name>yarn.resourcemanager.address</name>
-		   <value>master-node:8050</value>
+		   <value>master-namenode:8050</value>
 	   </property>
 	   <property>
 		   <name>yarn.resourcemanager.scheduler.address</name>
-		   <value>master-node:8030</value>
+		   <value>master-namenode:8030</value>
 	   </property>
 	   <property>
 		   <name>yarn.resourcemanager.resource-tracker.address</name>
-		   <value>master-node:8025</value>
+		   <value>master-namenode:8025</value>
 	   </property>
 	   <property>
 		   <name>yarn.resourcemanager.admin.address</name>
-		   <value>master-node:8011</value>
+		   <value>master-namenode:8011</value>
 	   </property>
 	   <property>
 		   <name>yarn.resourcemanager.webapp.address</name>
-		   <value>master-node:8080</value>
+		   <value>master-namenode:8080</value>
 	   </property>
 	   <property>
 		   <name>yarn.nodemanager.env-whitelist</name>
@@ -399,11 +404,11 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	   </property>
 	   <property>
 		   <name>yarn.resourcemanager.webapp.https.address</name>
-		   <value>master-node:8090</value>
+		   <value>master-namenode:8090</value>
 	   </property>
 	   <property>
 		   <name>yarn.resourcemanager.hostname</name>
-		   <value>master-node</value>
+		   <value>master-namenode</value>
 	   </property>
 	   <property>
 		   <name>yarn.resourcemanager.scheduler.class</name>
@@ -419,7 +424,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	   </property>
 	   <property>
 		   <name>yarn.nodemanager.remote-app-log-dir</name>
-		   <value>hdfs://master-node:9870/tmp/hadoop-yarn</value>
+		   <value>hdfs://master-namenode:9870/tmp/hadoop-yarn</value>
 	   </property>
 	   <property>
 		   <name>yarn.nodemanager.remote-app-log-dir-suffix</name>
@@ -435,51 +440,42 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	   </property>
 	   <property>
 		   <name>yarn.log.server.url</name>
-		   <value>http://master-node:19888/jobhistory/logs</value>
+		   <value>http://master-namenode:19888/jobhistory/logs</value>
 	   </property>
 	</configuration>
 		
 - Modify file: **hadoop-env.sh**       
 > Edit hadoop environment file by adding the following environment variables under the section "Set Hadoop-specific environment variables here.":  
 		
-``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hadoop-env.sh``  --copy hadoop-env.sh  
+``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hadoop-env.sh``  --copy hadoop-env.sh  
 	
 	export JAVA_HOME=/bigdata/jdk1.8.0_241
 	export HADOOP_LOG_DIR=/var/log/hadoop
-	export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=/bigdata/hadoop-3.1.1/lib/native"
-	export HADOOP_COMMON_LIB_NATIVE_DIR=/bigdata/hadoop-3.1.1/lib/native
+	export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=/bigdata/hadoop-3.1.2/lib/native"
+	export HADOOP_COMMON_LIB_NATIVE_DIR=/bigdata/hadoop-3.1.2/lib/native
 		
 - Create **workers** file
 		
-``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi workers``  --copy workers file
+``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi workers``  --copy workers file
 	
 	## write line for each DataNode Server
-	master-node 
+	master-namenode 
 	
 - Format the NameNode
 		
-``hdpuser@master-node:~$ hdfs namenode -format``
+``hdpuser@master-namenode:~$ hdfs namenode -format``
 	
 - Start & Stop Hadoop
+
+In principle to start Hadoop, we only type ``start-all.sh``. However, I created two aliases ``Start_HADOOP`` and ``Stop_HADOOP`` into the environment variables that will ensure the execution of Hadoop. I created these aliases in order to avoid conflicts with the same commands for Spark which will be installed on the same machines. If you want to see the logs on the Web UI, after the application is terminated, then you need to start running the MapReduce Job History server also. For this, I added ``mapred --daemon stop historyserver``
+
 ###### Start
 			
-``hdpuser@master-node:~$ start-all.sh``
+``hdpuser@master-namenode:~$ Start_HADOOP``
 	
 ###### Check hadoop processes are running
 
-	hdpuser@master-node:~$ jps  --this command should return something like
-	1889 ResourceManager
-	1300 NameNode
-	1993 NodeManager
-	2426 Jps
-	1403 DataNode
-	1566 SecondaryNameNode
-
-> If you want to see the logs on the Web UI, after the application is terminated, then you need to start running the MapReduce Job History server also:
-
-``hdpuser@master-node:~$ mr-jobhistory-daemon.sh start historyserver``
-
-	hdpuser@master-node:~$ jps  --this command should return something like
+	hdpuser@master-namenode:~$ jps  --this command should return something like
 	1889 ResourceManager
 	1300 NameNode
 	1093 JobHistoryServer
@@ -492,13 +488,13 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	
 | Service   |      Address web      |  Default HTTP port |
 |-----------|-----------------------|-------------------:|
-| NameNode |  http://master-node:9870/ | 9870 |
-| ResourceManager |    http://master-node:8080/   |   8080 |
-| MapReduce JobHistory Server |    http://master-node:19888/   |   19888 |
+| NameNode |  http://master-namenode:9870/ | 9870 |
+| ResourceManager |    http://master-namenode:8080/   |   8080 |
+| MapReduce JobHistory Server |    http://master-namenode:19888/   |   19888 |
 
 ###### Stop
 
-``hdpuser@master-node:~$ stop-all.sh``
+``hdpuser@master-namenode:~$ stop-all.sh``
 
 > # Install Hadoop with NameNode & DataNodes on Multi Nodes
 
@@ -508,90 +504,90 @@ Assuming that the hostnames, ip addresses and services (NameNode and/or DataNode
 
 | Hostname   |      IP Address     |  NameNode |  DataNode
 |----------|-------------|:------:|:------:|
-| master-node |  192.xxx.x.1 | &check; | &check; |
+| master-namenode |  192.168.1.72 | &check; | &check; |
 | slave-node-1 |    192.xxx.x.2   |   | &check; |
 
-So far, we have only one machine that is ready (master-node). We have to build and configure the second server. We can clone the first machine and then modifying the necessary parameters will be a good idea.
+So far, we have only one machine that is ready (master-namenode). We have to build and configure the second server. We can clone the first machine and then modifying the necessary parameters will be a good idea.
 
-## 1- Clone the master-node server created above
+## 1- Clone the master-namenode server created above
 ### Commands with root	
 > login as root user
 
-``hdpuser@master-node:~$ su root``
+``hdpuser@master-namenode:~$ su root``
 
 - Turnoff firewall
 
-``root@master-node:~# service firewalld status``
+``root@master-namenode:~# service firewalld status``
 		
-``root@master-node:~# service firewalld stop``
+``root@master-namenode:~# service firewalld stop``
 
-``root@master-node:~# systemctl disable firewalld``
+``root@master-namenode:~# systemctl disable firewalld``
 			
 - Edit the hostname and setup FQDN (considering the new hostname as "slave-node-1")
 
-``root@master-node:~# vi /etc/hostname``  --remove the existing file and write the below
+``root@master-namenode:~# vi /etc/hostname``  --remove the existing file and write the below
 			
 	slave-node-1
 			
-``root@master-node:~# vi /etc/hosts``  --your file should look like the below
+``root@master-namenode:~# vi /etc/hosts``  --your file should look like the below
 			
 	127.0.0.1	localhost	
-	192.xxx.x.1	master-node
+	192.168.1.72	master-namenode
 	192.xxx.x.2	slave-node-1
 			
 - Type the following
 		
-``root@master-node:~# hostname slave-node-1``
+``root@master-namenode:~# hostname slave-node-1``
 		
 > To check type
 		
-``root@master-node:~# hostname``  --should return 
+``root@master-namenode:~# hostname``  --should return 
 	
 	slave-node-1
 
-``root@master-node:~# hostname -f``  --should return 
+``root@master-namenode:~# hostname -f``  --should return 
 
 	slave-node-1
 			
-> login as hdpuser on "master-node" server
+> login as hdpuser on "master-namenode" server
 
-- Edit the hosts file of the "master-node" server	
+- Edit the hosts file of the "master-namenode" server	
 
-``hdpuser@master-node:~$ vi /etc/hosts``  --your file should look like the below
+``hdpuser@master-namenode:~$ vi /etc/hosts``  --your file should look like the below
 			
 	127.0.0.1	localhost	
-	192.xxx.x.1	master-node
+	192.168.1.72	master-namenode
 	192.xxx.x.2	slave-node-1
 
 - Setup password less SSH between Hadoop services
 
-``hdpuser@master-node:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-node-1``  (if you have more than one node, you will repeat for each node)
+``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-node-1``  (if you have more than one node, you will repeat for each node)
 
-``hdpuser@master-node:~$ ssh hdpuser@slave-node-1``  
+``hdpuser@master-namenode:~$ ssh hdpuser@slave-node-1``  
 
 	Are you sure you want to continue connecting (yes/no)? yes
 
 ``hdpuser@slave-node-1:~$ exit``
 		
 ### Configure Hadoop				   
-- Edit the **workers** file on the NameNode (master-node) server
+- Edit the **workers** file on the NameNode (master-namenode) server
 		
-``hdpuser@master-node:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
+``hdpuser@master-namenode:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
 			
-	master-node  	#if you don't want this node to be DataNode, remove this line from the workers file
+	master-namenode  	#if you don't want this node to be DataNode, remove this line from the workers file
 	slave-node-1
 	
 ```diff 
-- The most important thing here is to configure in particular the workers file on the NameNode server (master-node) because it masters the other nodes. 
-- Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master-node server workers file.
+- The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode) because it masters the other nodes. 
+- Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master-namenode server workers file.
 ```
 
 - Modify file: **hdfs-site.xml**  
 > If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
 		
->> On the NameNode & DataNode (master-node) server:
+>> On the NameNode & DataNode (master-namenode) server:
 
-``hdpuser@master-node:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
+``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 
 	<configuration>
 	   <property>
@@ -618,7 +614,7 @@ So far, we have only one machine that is ready (master-node). We have to build a
 
 >> On the DataNode (slave-node-1) server:
 
-``hdpuser@slave-node-1:/bigdata/hadoop-3.1.1/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
+``hdpuser@slave-node-1:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 
 	<configuration>
 	   <property>
@@ -641,20 +637,20 @@ So far, we have only one machine that is ready (master-node). We have to build a
 		
 - Clean up some old files on both nodes
 
-``hdpuser@master-node:~$ rm -rf /bigdata/HadoopData/namenode/*``
+``hdpuser@master-namenode:~$ rm -rf /bigdata/HadoopData/namenode/*``
 
-``hdpuser@master-node:~$ rm -rf /bigdata/HadoopData/datanode/*``
+``hdpuser@master-namenode:~$ rm -rf /bigdata/HadoopData/datanode/*``
 		
 ``hdpuser@slave-node-1:~$ rm -rf /bigdata/HadoopData/namenode/*``
 
 ``hdpuser@slave-node-1:~$ rm -rf /bigdata/HadoopData/datanode/*``
 
 
-## 2- Starting and stopping Hadoop on master-node
+## 2- Starting and stopping Hadoop on master-namenode
 
 - Format the NameNode
 		
-``hdpuser@master-node:~$ hdfs namenode -format``
+``hdpuser@master-namenode:~$ hdfs namenode -format``
 
 ![format1](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/format1.png)
 ![format2](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/format2.png)
@@ -663,13 +659,13 @@ So far, we have only one machine that is ready (master-node). We have to build a
 		
 ###### Start
 			
-``hdpuser@master-node:~$ start-all.sh``
+``hdpuser@master-namenode:~$ start-all.sh``
 
 ![starthadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/starthadoop.PNG)
 
-###### Check hadoop processes are running on master-node
+###### Check hadoop processes are running on master-namenode
 			
-	hdpuser@master-node:~$ jps 	--this command should return something like 
+	hdpuser@master-namenode:~$ jps 	--this command should return something like 
 	4962 NodeManager
 	4851 ResourceManager
 	4292 NameNode
@@ -684,17 +680,17 @@ So far, we have only one machine that is ready (master-node). We have to build a
 	2815 DataNode
 
 ###### Default Web Interfaces
-	NameNode	> http://master-node:9870/ 	Default HTTP port is 9870.
+	NameNode	> http://master-namenode:9870/ 	Default HTTP port is 9870.
 		
 ![NameNode](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node9870.png)
 	
-	ResourceManager	> http://master-node:8080/	Default HTTP port is 8080.
+	ResourceManager	> http://master-namenode:8080/	Default HTTP port is 8080.
 		
 ![ResourceManager](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/master-node8080.png)
 
 ###### Get report
 
-	hdpuser@master-node:~$ hdfs dfsadmin -report 	--this command should return something like
+	hdpuser@master-namenode:~$ hdfs dfsadmin -report 	--this command should return something like
 	Configured Capacity: 39891271680 (37.15 GB)
 	Present Capacity: 25074253824 (23.35 GB)
 	DFS Remaining: 25074204672 (23.35 GB)
@@ -715,8 +711,8 @@ So far, we have only one machine that is ready (master-node). We have to build a
 	-------------------------------------------------
 	Live datanodes (2):
 
-	Name: 192.xxx.x.1:9866 (master-node)
-	Hostname: master-node
+	Name: 192.168.1.72:9866 (master-namenode)
+	Hostname: master-namenode
 	Decommission Status : Normal
 	Configured Capacity: 19945635840 (18.58 GB)
 	DFS Used: 24576 (24 KB)
@@ -756,7 +752,7 @@ So far, we have only one machine that is ready (master-node). We have to build a
 		
 ###### Stop Hadoop
 		
-``hdpuser@master-node:~$ stop-all.sh``
+``hdpuser@master-namenode:~$ stop-all.sh``
 
 ![stophadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/stophadoop.png)
 
