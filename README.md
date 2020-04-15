@@ -246,7 +246,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 ``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/namenode``  	*only on the NameNode server*
 
-``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/datanode``  	*on all the servers*
+``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/datanode``  	*on all the the DataNodes servers*
 	
 - Configure Hadoop
 		
@@ -475,7 +475,7 @@ Once an application is terminated, you need to start running the MapReduce Job H
 			
 ``hdpuser@master-namenode:~$ Start_HADOOP``
 	
-###### Check hadoop processes are running
+###### Check Hadoop processes are running
 
 	hdpuser@master-namenode:~$ jps  --this command should return something like
 	1889 ResourceManager
@@ -498,7 +498,7 @@ Once an application is terminated, you need to start running the MapReduce Job H
 
 ``hdpuser@master-namenode:~$ Stop_HADOOP``
 
-> # Install Hadoop with NameNode & DataNodes on Multi Nodes
+> # Install Hadoop with NameNode & DataNodes on Multi-Nodes
 
 In this second section, we proceed to perform a multi-node cluster. Three virtual machines (nodes) will be considered. If you would a cluster composed of more than three nodes, you can apply the same steps that will be exposed below. 
 
@@ -579,7 +579,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 - Setup password less SSH between Hadoop services
 
-``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-datanode-1``  (if you have more than one node, you will repeat for each node)
+``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-datanode-1``  
 
 ``hdpuser@master-namenode:~$ ssh hdpuser@slave-datanode-1``  
 
@@ -587,7 +587,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 ``hdpuser@slave-datanode-1:~$ exit``
 
-``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-datanode-2``  (if you have more than one node, you will repeat for each node)
+``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-datanode-2``  
 
 ``hdpuser@master-namenode:~$ ssh hdpuser@slave-datanode-2``  
 
@@ -606,7 +606,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	
 ```diff 
 - The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode) because it orchestrates the other nodes. 
-- Concerning the slave-datanode-1 and slave-datanode-2 workers file, format them by leaving them empty.
+- Concerning the slave-datanode-1 and slave-datanode-2 workers files, format them by leaving them empty.
 ```
 
 - Modify file: **hdfs-site.xml**  
@@ -689,11 +689,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 ``hdpuser@master-namenode:~$ rm -rf /bigdata/HadoopData/datanode/*``
 		
-``hdpuser@slave-datanode-1:~$ rm -rf /bigdata/HadoopData/namenode/*``
-
 ``hdpuser@slave-datanode-1:~$ rm -rf /bigdata/HadoopData/datanode/*``
-
-``hdpuser@slave-datanode-2:~$ rm -rf /bigdata/HadoopData/namenode/*``
 
 ``hdpuser@slave-datanode-2:~$ rm -rf /bigdata/HadoopData/datanode/*``
 
@@ -715,19 +711,19 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 ![starthadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/starthadoop.png)
 
-###### Check hadoop processes are running on master-namenode
+###### Check Hadoop processes are running on master-namenode
 			
 ``hdpuser@master-namenode:~$ jps``
 
 ![namenodejps](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/namenodejps.png)
 		
-###### Check hadoop processes are running on slave-datanode-1
+###### Check Hadoop processes are running on slave-datanode-1
 
 ``hdpuser@master-datanode-1:~$ jps``
 
 ![datanode1jps](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/datanode1jps.png)
 
-###### Check hadoop processes are running on slave-datanode-2
+###### Check Hadoop processes are running on slave-datanode-2
 
 ``hdpuser@master-datanode-2:~$ jps``
 
