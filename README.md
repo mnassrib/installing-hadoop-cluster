@@ -825,7 +825,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 		
 ###### Stop Hadoop
 		
-``hdpuser@master-namenode:~$ stop-all.sh``
+``hdpuser@master-namenode:~$ Stop_HADOOP``
 
 ![stophadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/stophadoop.png)
 
