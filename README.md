@@ -22,6 +22,8 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 [nexttuto]: https://github.com/mnassrib/installing-spark-on-hadoop-yarn-cluster
 
+&nbsp;
+&nbsp;
 		
 > # Install and configure Hadoop with NameNode & DataNode on single node
 		
