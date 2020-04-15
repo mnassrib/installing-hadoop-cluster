@@ -553,33 +553,29 @@ So far, we have only one machine that is ready (master-node). We have to build a
 
 	slave-node-1
 			
-> login as hdpuser
-
-- Generate SSH keys and setup password less SSH between Hadoop services
-
-``hdpuser@slave-node-1:~$ ssh-keygen -t rsa``  ## just press Enter for all choices
-		
-``hdpuser@slave-node-1:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys``
-
-``hdpuser@slave-node-1:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-node``  (you should be able to ssh without asking for password)
-
-``hdpuser@slave-node-1:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-node-1``  (if you have more than one node, you will repeat for each node)
-		
-``hdpuser@slave-node-1:~$ ssh hdpuser@xxxx`` 
-			
-	Are you sure you want to continue connecting (yes/no)? yes
-
-``hdpuser@xxxx:~$ exit``
+> login as hdpuser on "master-node" server
 
 - Edit the hosts file of the "master-node" server	
-
-``hdpuser@slave-node-1:~$ ssh hdpuser@master-node``
 
 ``hdpuser@master-node:~$ vi /etc/hosts``  --your file should look like the below
 			
 	127.0.0.1	localhost	
 	192.xxx.x.1	master-node
 	192.xxx.x.2	slave-node-1
+
+- Setup password less SSH between Hadoop services
+
+``hdpuser@master-node:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-node-1``  
+	
+	Are you sure you want to continue connecting (yes/no)? yes
+
+``hdpuser@slave-node-1:~$ exit``
+		
+``hdpuser@master-node:~$ ssh hdpuser@xxxx``  (if you have more than one node, you will repeat for each node)
+			
+	Are you sure you want to continue connecting (yes/no)? yes
+
+``hdpuser@xxxx:~$ exit``
 
 ### Configure Hadoop				   
 - Edit the **workers** file on the NameNode (master-node) server
