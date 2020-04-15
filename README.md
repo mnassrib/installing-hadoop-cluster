@@ -512,43 +512,35 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 ## 1- Clone the master-namenode server created above
 ### Commands with root	
-> login as root user
+> login as root user on the two cloned machines 
 
 ``hdpuser@master-namenode:~$ su root``
-
-- Turnoff firewall
-
-``root@master-namenode:~# service firewalld status``
-		
-``root@master-namenode:~# service firewalld stop``
-
-``root@master-namenode:~# systemctl disable firewalld``
 			
-- Edit the hostname and setup FQDN (considering the new hostname as "slave-node-1")
+- Edit the hostname and setup FQDN (considering the new hostnames as "slave-datanode-1" and "slave-datanode-2")
 
 ``root@master-namenode:~# vi /etc/hostname``  --remove the existing file and write the below
 			
-	slave-node-1
+	slave-datanode-1
 			
 ``root@master-namenode:~# vi /etc/hosts``  --your file should look like the below
 			
 	127.0.0.1	localhost	
 	192.168.1.72	master-namenode
-	192.xxx.x.2	slave-node-1
+	192.168.1.73	slave-datanode-1
 			
 - Type the following
 		
-``root@master-namenode:~# hostname slave-node-1``
+``root@master-namenode:~# hostname slave-datanode-1``
 		
 > To check type
 		
 ``root@master-namenode:~# hostname``  --should return 
 	
-	slave-node-1
+	slave-datanode-1
 
 ``root@master-namenode:~# hostname -f``  --should return 
 
-	slave-node-1
+	slave-datanode-1
 			
 > login as hdpuser on "master-namenode" server
 
@@ -558,17 +550,17 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 			
 	127.0.0.1	localhost	
 	192.168.1.72	master-namenode
-	192.xxx.x.2	slave-node-1
+	192.168.1.73	slave-datanode-1
 
 - Setup password less SSH between Hadoop services
 
-``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-node-1``  (if you have more than one node, you will repeat for each node)
+``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-datanode-1``  (if you have more than one node, you will repeat for each node)
 
-``hdpuser@master-namenode:~$ ssh hdpuser@slave-node-1``  
+``hdpuser@master-namenode:~$ ssh hdpuser@slave-datanode-1``  
 
 	Are you sure you want to continue connecting (yes/no)? yes
 
-``hdpuser@slave-node-1:~$ exit``
+``hdpuser@slave-datanode-1:~$ exit``
 		
 ### Configure Hadoop				   
 - Edit the **workers** file on the NameNode (master-namenode) server
@@ -576,11 +568,11 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 ``hdpuser@master-namenode:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
 			
 	master-namenode  	#if you don't want this node to be DataNode, remove this line from the workers file
-	slave-node-1
+	slave-datanode-1
 	
 ```diff 
 - The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode) because it masters the other nodes. 
-- Concerning the slave-node-1 workers file, format it by leaving it empty or perform the same configuration as the master-namenode server workers file.
+- Concerning the slave-datanode-1 workers file, format it by leaving it empty or perform the same configuration as the master-namenode server workers file.
 ```
 
 - Modify file: **hdfs-site.xml**  
@@ -613,9 +605,9 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	   </property>
 	</configuration>
 
->> On the DataNode (slave-node-1) server:
+>> On the DataNode (slave-datanode-1) server:
 
-``hdpuser@slave-node-1:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
+``hdpuser@slave-datanode-1:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 
 	<configuration>
 	   <property>
@@ -642,9 +634,9 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 ``hdpuser@master-namenode:~$ rm -rf /bigdata/HadoopData/datanode/*``
 		
-``hdpuser@slave-node-1:~$ rm -rf /bigdata/HadoopData/namenode/*``
+``hdpuser@slave-datanode-1:~$ rm -rf /bigdata/HadoopData/namenode/*``
 
-``hdpuser@slave-node-1:~$ rm -rf /bigdata/HadoopData/datanode/*``
+``hdpuser@slave-datanode-1:~$ rm -rf /bigdata/HadoopData/datanode/*``
 
 
 ## 2- Starting and stopping Hadoop on master-namenode
@@ -674,8 +666,8 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	5320 Jps
 	4590 SecondaryNameNode
 		
-###### Check hadoop processes are running on slave-node-1
-	hdpuser@slave-node-1:~$ jps 	--this command should return something like 
+###### Check hadoop processes are running on slave-datanode-1
+	hdpuser@slave-datanode-1:~$ jps 	--this command should return something like 
 	3056 Jps
 	2925 NodeManager
 	2815 DataNode
@@ -732,8 +724,8 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	Num of Blocks: 0
 
 
-	Name: 192.xxx.x.2:9866 (slave-node-1)
-	Hostname: slave-node-1
+	Name: 192.168.1.73:9866 (slave-datanode-1)
+	Hostname: slave-datanode-1
 	Decommission Status : Normal
 	Configured Capacity: 19945635840 (18.58 GB)
 	DFS Used: 24576 (24 KB)
