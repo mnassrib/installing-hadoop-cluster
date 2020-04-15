@@ -613,7 +613,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	slave-datanode-1
 	slave-datanode-2
 	
-| WARNING: The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode) because it orchestrates the other nodes. Format by leaving empty the slave-datanode-1 and slave-datanode-2 workers files.|
+| WARNING: The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode). Since it orchestrates all the DataNode servers, it needs to know its hostnames by mentioning them in its workers file. Format by leaving empty the workers files of the slave-datanode-1 and slave-datanode-2 servers.|
 | --- |
 
 - Modify file: **hdfs-site.xml**  
