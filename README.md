@@ -709,25 +709,27 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 		
 ###### Start
 			
-``hdpuser@master-namenode:~$ start-all.sh``
+``hdpuser@master-namenode:~$ Start_HADOOP``
 
-![starthadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/starthadoop.PNG)
+![starthadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/starthadoop.png)
 
 ###### Check hadoop processes are running on master-namenode
 			
-	hdpuser@master-namenode:~$ jps 	--this command should return something like 
-	4962 NodeManager
-	4851 ResourceManager
-	4292 NameNode
-	4407 DataNode
-	5320 Jps
-	4590 SecondaryNameNode
+``hdpuser@master-namenode:~$ jps``
+
+![namenodejps](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/namenodejps.png)
 		
 ###### Check hadoop processes are running on slave-datanode-1
-	hdpuser@slave-datanode-1:~$ jps 	--this command should return something like 
-	3056 Jps
-	2925 NodeManager
-	2815 DataNode
+
+``hdpuser@master-datanode-1:~$ jps``
+
+![datanode1jps](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/datanode1jps.png)
+
+###### Check hadoop processes are running on slave-datanode-2
+
+``hdpuser@master-datanode-2:~$ jps``
+
+![datanode2jps](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/datanode2jps.png)
 
 ###### Default Web Interfaces
 	NameNode	> http://master-namenode:9870/ 	Default HTTP port is 9870.
