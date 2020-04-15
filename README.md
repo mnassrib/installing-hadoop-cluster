@@ -711,7 +711,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 			
 ``hdpuser@master-namenode:~$ Start_HADOOP``
 
-![starthadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/starthadoop.png)
+![starthadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/starthadoop.PNG)
 
 ###### Check hadoop processes are running on master-namenode
 			
