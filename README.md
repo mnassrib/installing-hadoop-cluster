@@ -510,13 +510,15 @@ Assuming the hostnames, ip addresses and services (NameNode and/or DataNode) of 
 
 So far, we have only one machine (master-namenode) that is ready. We have to build and configure the two other added machines. We can clone the created machine and then modifying the necessary parameters will be a good idea.
 
-## 1- Clone the master-namenode server created above
+## 1- Clone twice the master-namenode server created above
 ### Commands with root	
 > login as root user on the two cloned machines 
 
 ``hdpuser@master-namenode:~$ su root``
 			
 - Edit the hostname and setup FQDN (considering the new hostnames as "slave-datanode-1" and "slave-datanode-2")
+
+> On the first cloned machine (slave-datanode-1 server)
 
 ``root@master-namenode:~# vi /etc/hostname``  --remove the existing file and write the below
 			
@@ -527,13 +529,10 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	127.0.0.1	localhost	
 	192.168.1.72	master-namenode
 	192.168.1.73	slave-datanode-1
-			
-- Type the following
-		
+	192.168.1.74	slave-datanode-2
+
 ``root@master-namenode:~# hostname slave-datanode-1``
-		
-> To check type
-		
+
 ``root@master-namenode:~# hostname``  --should return 
 	
 	slave-datanode-1
@@ -541,6 +540,29 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 ``root@master-namenode:~# hostname -f``  --should return 
 
 	slave-datanode-1
+	
+> On the second cloned machine (slave-datanode-2 server)
+
+``root@master-namenode:~# vi /etc/hostname``  --remove the existing file and write the below
+			
+	slave-datanode-2
+			
+``root@master-namenode:~# vi /etc/hosts``  --your file should look like the below
+			
+	127.0.0.1	localhost	
+	192.168.1.72	master-namenode
+	192.168.1.73	slave-datanode-1
+	192.168.1.74	slave-datanode-2
+
+``root@master-namenode:~# hostname slave-datanode-2``
+
+``root@master-namenode:~# hostname``  --should return 
+	
+	slave-datanode-2
+
+``root@master-namenode:~# hostname -f``  --should return 
+
+	slave-datanode-2
 			
 > login as hdpuser on "master-namenode" server
 
@@ -551,6 +573,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	127.0.0.1	localhost	
 	192.168.1.72	master-namenode
 	192.168.1.73	slave-datanode-1
+	192.168.1.74	slave-datanode-2
 
 - Setup password less SSH between Hadoop services
 
@@ -561,22 +584,31 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	Are you sure you want to continue connecting (yes/no)? yes
 
 ``hdpuser@slave-datanode-1:~$ exit``
+
+``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@slave-datanode-2``  (if you have more than one node, you will repeat for each node)
+
+``hdpuser@master-namenode:~$ ssh hdpuser@slave-datanode-2``  
+
+	Are you sure you want to continue connecting (yes/no)? yes
+
+``hdpuser@slave-datanode-2:~$ exit``
 		
 ### Configure Hadoop				   
 - Edit the **workers** file on the NameNode (master-namenode) server
 		
 ``hdpuser@master-namenode:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
 			
-	master-namenode  	#if you don't want this node to be DataNode, remove this line from the workers file
+	master-namenode  	#Remove this line from the workers file if you don't want this node to be DataNode
 	slave-datanode-1
+	slave-datanode-2
 	
 ```diff 
-- The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode) because it masters the other nodes. 
-- Concerning the slave-datanode-1 workers file, format it by leaving it empty or perform the same configuration as the master-namenode server workers file.
+- The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode) because it orchestrates the other nodes. 
+- Concerning the slave-datanode-1 and slave-datanode-2 workers file, format them by leaving them empty.
 ```
 
 - Modify file: **hdfs-site.xml**  
-> If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the hdfs-site.xml files of all the nodes. This number cannot be greater than the number of nodes.
+> If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the **hdfs-site.xml** files of all the nodes. This number cannot be greater than the number of nodes. We're going to set it here at 2.
 		
 >> On the NameNode & DataNode (master-namenode) server:
 
@@ -605,7 +637,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	   </property>
 	</configuration>
 
->> On the DataNode (slave-datanode-1) server:
+>> On the DataNodes (slave-datanode-1 and slave-datanode-2) servers:
 
 ``hdpuser@slave-datanode-1:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 
@@ -627,8 +659,29 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 		   <value>false</value>
 	   </property>
 	</configuration>
+
+``hdpuser@slave-datanode-2:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
+
+	<configuration>
+	   <property>
+		   <name>dfs.datanode.data.dir</name>
+		   <value>file:///bigdata/HadoopData/datanode</value>
+	   </property>
+	   <property>
+		   <name>dfs.blocksize</name>
+		   <value>134217728</value>
+	   </property>
+	   <property>
+		   <name>dfs.replication</name>
+		   <value>2</value>
+	   </property>
+	   <property>
+		   <name>dfs.permissions</name>
+		   <value>false</value>
+	   </property>
+	</configuration>
 		
-- Clean up some old files on both nodes
+- Clean up some old files on all the nodes
 
 ``hdpuser@master-namenode:~$ rm -rf /bigdata/HadoopData/namenode/*``
 
@@ -637,6 +690,10 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 ``hdpuser@slave-datanode-1:~$ rm -rf /bigdata/HadoopData/namenode/*``
 
 ``hdpuser@slave-datanode-1:~$ rm -rf /bigdata/HadoopData/datanode/*``
+
+``hdpuser@slave-datanode-2:~$ rm -rf /bigdata/HadoopData/namenode/*``
+
+``hdpuser@slave-datanode-2:~$ rm -rf /bigdata/HadoopData/datanode/*``
 
 
 ## 2- Starting and stopping Hadoop on master-namenode
