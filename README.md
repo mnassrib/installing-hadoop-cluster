@@ -267,7 +267,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 - Modify file: **hdfs-site.xml**  
 :warning: 	
 
-!- The parameter ``dfs.namenode.data.dir`` must be kept only on the NameNode server 
+! - The parameter ``dfs.namenode.data.dir`` must be kept only on the NameNode server 
 
 > !- If you need DataNode on the NameNode server, set the parameter ``dfs.datanode.data.dir``
 
