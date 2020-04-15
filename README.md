@@ -604,10 +604,8 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	slave-datanode-1
 	slave-datanode-2
 	
-```diff 
-- The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode) because it orchestrates the other nodes. 
-- Concerning the slave-datanode-1 and slave-datanode-2 workers files, format them by leaving them empty.
-```
+| WARNING: The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode) because it orchestrates the other nodes. Format by leaving empty the slave-datanode-1 and slave-datanode-2 workers files.|
+| --- |
 
 - Modify file: **hdfs-site.xml**  
 > If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the **hdfs-site.xml** files of all the nodes. This number cannot be greater than the number of nodes. We're going to set it here at 2.
