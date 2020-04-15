@@ -498,16 +498,17 @@ In principle to start Hadoop, we only type ``start-all.sh``. However, I created 
 
 > # Install Hadoop with NameNode & DataNodes on Multi Nodes
 
-In this section, we proceed to perform a multi-node cluster. Only two virtual machines (nodes) will be considered. If you would a cluster composed of more than two nodes, you can apply the same steps that will be exposed below. 
+In this second section, we proceed to perform a multi-node cluster. Three virtual machines (nodes) will be considered. If you would a cluster composed of more than three nodes, you can apply the same steps that will be exposed below. 
 
-Assuming that the hostnames, ip addresses and services (NameNode and/or DataNode) of the two nodes will be as follows:
+Assuming the hostnames, ip addresses and services (NameNode and/or DataNode) of the three nodes will be as follows:
 
 | Hostname   |      IP Address     |  NameNode |  DataNode
 |----------|-------------|:------:|:------:|
 | master-namenode |  192.168.1.72 | &check; | &check; |
-| slave-node-1 |    192.xxx.x.2   |   | &check; |
+| slave-datanode-1 |    192.168.1.73   |   | &check; |
+| slave-datanode-2 |    192.168.1.74   |   | &check; |
 
-So far, we have only one machine that is ready (master-namenode). We have to build and configure the second server. We can clone the first machine and then modifying the necessary parameters will be a good idea.
+So far, we have only one machine (master-namenode) that is ready. We have to build and configure the two other added machines. We can clone the created machine and then modifying the necessary parameters will be a good idea.
 
 ## 1- Clone the master-namenode server created above
 ### Commands with root	
