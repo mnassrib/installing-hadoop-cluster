@@ -1,10 +1,24 @@
-# Installing Hadoop on single node as well multi-node cluster using Debian 9 Linux VMs
+# Installing Hadoop on single node as well multi-node cluster based on VMs running Debian 9 Linux
 
-> This repository reviews all required steps to install Hadoop on single node cluster as well as multi-node cluster using virtual machines with Debian 9.
+> This article describes how to configure a Hadoop cluster from a pseudo-distributed configuration. The first section will explain how to install Hadoop on Debian 9 Linux. Following this installation, the Hadoop cluster consisted of only one node (i.e. single node cluster) and the MapReduce jobs will be executed in a pseudo-distributed manner. In order to use more Hadoop features, we will modify the configuration to allow jobs to be executed in a distributed manner, so the Hadoop cluster will be composed of more than on node (i.e. a multi-node cluster).
+
 
 > **For the success of the tutorial, we assume that you already have a virtual machine equipped with Linux OS (Debian 9). This should work in principle even with other Linux distributions. You can get Virtualbox to build virtual machines. In order to concept a cluster, you must also have the ability to procure more than one virtual machine.**
 
-The next tutorial will explain [ how to install Spark on Hadoop Yarn Multi-Node Cluster][nexttuto].
+To have Linux virtual machines that running your cluster:
+
+- Download [Oracle Virtualbox][virtualbox].
+- Download [Linux][linux].
+- [Create a Virtual Machine in Virtualbox and install Linux on it][installdebian].
+- [Clone that VM][clone] after following the Hadoop installation steps.
+
+[virtualbox]: https://www.virtualbox.org/wiki/Downloads
+[linux]:https://www.debian.org/distrib/
+[installdebian]: https://medium.com/platform-engineer/how-to-install-debian-linux-on-virtualbox-with-guest-additions-778afa0ee7e0
+[clone]: https://protechgurus.com/clone-virtual-machine-virtualbox/
+
+
+The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node Cluster][nexttuto].
 
 [nexttuto]: https://github.com/mnassrib/installing-spark-on-hadoop-yarn-cluster
 		
