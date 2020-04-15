@@ -494,7 +494,7 @@ In principle to start Hadoop, we only type ``start-all.sh``. However, I created 
 
 ###### Stop
 
-``hdpuser@master-namenode:~$ stop-all.sh``
+``hdpuser@master-namenode:~$ Stop_HADOOP``
 
 > # Install Hadoop with NameNode & DataNodes on Multi Nodes
 
