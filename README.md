@@ -123,13 +123,13 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 ``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-namenode``  --(you should be able to ssh without asking for password)
 
-``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@xxxxxxxx``   --(if you have more than one node, you will repeat for each node)
+``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-namenode``  --(if you have more than one node, you will repeat for each node)
 
-``hdpuser@master-namenode:~$ ssh hdpuser@xxxxxxxx``
+``hdpuser@master-namenode:~$ ssh hdpuser@master-namenode``
 
 	Are you sure you want to continue connecting (yes/no)? yes
 	
-``hdpuser@xxxxxxxx:~$ exit``
+``hdpuser@master-namenode:~$ exit``
 	
 - Creating the needed directories:
 
@@ -190,7 +190,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 ``hdpuser@master-namenode:~$ sudo update-alternatives --set javaws /bigdata/jdk1.8.0_241/bin/javaws``
 
-``hdpuser@master-namenode:~$ java -version``  ## to check
+``hdpuser@master-namenode:~$ java -version``  --to check the version
 
 	hdpuser@master-namenode:~$ java -version
 	java version "1.8.0_241"
@@ -214,7 +214,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 ``hdpuser@master-namenode:/bigdata$ cd``  --to move to your home directory
 
-``hdpuser@master-namenode:~$ vi .bashrc``  --add the following under the Java Environment Variables section into the .bashrc file
+``hdpuser@master-namenode:~$ vi .bashrc``  --add the following under the Java Environment variables section into the .bashrc file
 	
 	# Setup Hadoop Environment variables		
 	export HADOOP_HOME=/bigdata/hadoop-3.1.2
@@ -246,11 +246,11 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 ``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/namenode``  	*only on the NameNode server*
 
-``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/datanode``  	*on both servers*
+``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/datanode``  	*on all the servers*
 	
 - Configure Hadoop
 		
-``hdpuser@master-namenode:~$ cd $HADOOP_CONF_DIR``  ## check the environment variables you just added
+``hdpuser@master-namenode:~$ cd $HADOOP_CONF_DIR``  # check the environment variables you just added
 	
 - Modify file: **core-site.xml**
 		
@@ -445,7 +445,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	</configuration>
 		
 - Modify file: **hadoop-env.sh**       
-> Edit hadoop environment file by adding the following environment variables under the section "Set Hadoop-specific environment variables here.":  
+> Edit Hadoop environment file by adding the following environment variables under the section "Set Hadoop-specific environment variables here.":  
 		
 ``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hadoop-env.sh``  --copy hadoop-env.sh  
 	
@@ -458,7 +458,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 		
 ``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi workers``  --copy workers file
 	
-	## write line for each DataNode Server
+	# write line for each DataNode server
 	master-namenode 
 	
 - Format the NameNode
@@ -467,7 +467,9 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	
 - Start & Stop Hadoop
 
-In principle to start Hadoop, we only type ``start-all.sh``. However, I created two aliases ``Start_HADOOP`` and ``Stop_HADOOP`` into the environment variables that will ensure the execution of Hadoop. I created these aliases in order to avoid conflicts with the same commands for Spark which will be installed on the same machines. If you want to see the logs on the Web UI, after the application is terminated, then you need to start running the MapReduce Job History server also. For this, I added ``mapred --daemon stop historyserver``
+In principle to start Hadoop, we only need to type ``start-all.sh``. However, I created two aliases ``Start_HADOOP`` and ``Stop_HADOOP`` into the environment variables that will ensure the execution of Hadoop. I created these aliases in order to avoid conflicts with the same commands existing with Spark which will be soon installed on the same machines. The same rules will also be applied with Spark. 
+
+Once an application is terminated, you need to start running the MapReduce Job History server if you want to see the logs on the Web UI. For this, I added ``mapred --daemon start historyserver`` and ``mapred --daemon stop historyserver`` commands into the two created aliases.
 
 ###### Start
 			
@@ -508,7 +510,7 @@ Assuming the hostnames, ip addresses and services (NameNode and/or DataNode) of 
 | slave-datanode-1 |    192.168.1.73   |   | &check; |
 | slave-datanode-2 |    192.168.1.74   |   | &check; |
 
-So far, we have only one machine (master-namenode) that is ready. We have to build and configure the two other added machines. We can clone the created machine and then modifying the necessary parameters will be a good idea.
+So far, we have only one machine (master-namenode) that is ready. We have to build and configure the two other added machines. We can clone the master-namenode machine twice, then changing the necessary parameters seems like a good idea.
 
 ## 1- Clone twice the master-namenode server created above
 ### Commands with root	
@@ -596,7 +598,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 ### Configure Hadoop				   
 - Edit the **workers** file on the NameNode (master-namenode) server
 		
-``hdpuser@master-namenode:~$ vi workers``  --write line for each DataNode server (in our case both server machines are considered DataNodes)
+``hdpuser@master-namenode:~$ vi workers``  --write line for each DataNode server (in our case all the machines are considered DataNodes)
 			
 	master-namenode  	#Remove this line from the workers file if you don't want this node to be DataNode
 	slave-datanode-1
