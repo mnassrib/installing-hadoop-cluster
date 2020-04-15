@@ -21,8 +21,9 @@ To have Linux virtual machines that running your cluster:
 The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node Cluster][nexttuto].
 
 [nexttuto]: https://github.com/mnassrib/installing-spark-on-hadoop-yarn-cluster
+
 		
-> # Install and Configure Hadoop with NameNode & DataNode on Single Node
+> # Install and configure Hadoop with NameNode & DataNode on single node
 		
 		
 ## 1- Prepare Linux		       
@@ -498,7 +499,7 @@ Once an application is terminated, you need to start running the MapReduce Job H
 
 ``hdpuser@master-namenode:~$ Stop_HADOOP``
 
-> # Install Hadoop with NameNode & DataNodes on Multi-Nodes
+> # Install Hadoop with NameNode & DataNodes on multi-nodes
 
 In this second section, we proceed to perform a multi-node cluster. Three virtual machines (nodes) will be considered. If you would a cluster composed of more than three nodes, you can apply the same steps that will be exposed below. 
 
