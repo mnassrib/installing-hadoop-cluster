@@ -128,7 +128,7 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 
 ``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-namenode``  --(you should be able to ssh without asking for password)
 
-``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-namenode``  --(if you have more than one node, you will repeat for each node)
+
 
 ``hdpuser@master-namenode:~$ ssh hdpuser@master-namenode``
 
