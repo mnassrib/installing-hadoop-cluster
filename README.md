@@ -19,9 +19,9 @@ To have Linux virtual machines that running your cluster:
 [installdebian]: https://medium.com/platform-engineer/how-to-install-debian-linux-on-virtualbox-with-guest-additions-778afa0ee7e0
 [clone]: https://protechgurus.com/clone-virtual-machine-virtualbox/
 
-The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node Cluster][nexttuto].
+The next tutorial will explain [how to install Spark Standalone and Hadoop Yarn modes on Multi-Node Cluster][nexttuto].
 
-[nexttuto]: https://github.com/mnassrib/installing-spark-on-hadoop-yarn-cluster
+[nexttuto]: https://github.com/mnassrib/installing-spark-standalone-and-hadoop-yarn-on-cluster
 
 &nbsp;
 &nbsp;
@@ -837,6 +837,6 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 ![stophadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/stophadoop.png)
 
 
-The next tutorial explains [how to install Spark on Hadoop Yarn Multi-Node Cluster][nexttuto].
+The next tutorial explains [how to install Spark Standalone and Hadoop Yarn modes on Multi-Node Cluster][nexttuto].
 
-[nexttuto]: https://github.com/mnassrib/installing-spark-on-hadoop-yarn-cluster
+[nexttuto]: https://github.com/mnassrib/installing-spark-standalone-and-hadoop-yarn-on-cluster
