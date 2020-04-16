@@ -1,4 +1,5 @@
 # Installing Hadoop on single node as well multi-node cluster based on VMs running Debian 9 Linux
+
 &nbsp;
 
 > This article describes how to configure a Hadoop cluster from a pseudo-distributed configuration. The first section will explain how to install Hadoop on Debian 9 Linux. Following this installation, the Hadoop cluster consisted of only one node (i.e. single node cluster) and the MapReduce jobs will be executed in a pseudo-distributed manner. In order to use more Hadoop features, we will modify the configuration to allow jobs to be executed in a distributed manner, so the Hadoop cluster will be composed of more than on node (i.e. a multi-node cluster).
@@ -14,10 +15,9 @@ To have Linux virtual machines that running your cluster:
 - [Clone that VM][clone] after following the Hadoop installation steps.
 
 [virtualbox]: https://www.virtualbox.org/wiki/Downloads
-[linux]:https://www.debian.org/distrib/
+[linux]: https://www.debian.org/distrib/
 [installdebian]: https://medium.com/platform-engineer/how-to-install-debian-linux-on-virtualbox-with-guest-additions-778afa0ee7e0
 [clone]: https://protechgurus.com/clone-virtual-machine-virtualbox/
-
 
 The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node Cluster][nexttuto].
 
