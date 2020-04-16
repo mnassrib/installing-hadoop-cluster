@@ -616,7 +616,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	
 - Modify file: **hdfs-site.xml**  
 
-| WARNING: If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the **hdfs-site.xml** files of all the nodes. This number cannot be greater than the number of nodes. We're going to set it here at 2.|
+| WARNING: If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the **hdfs-site.xml** files into all the nodes. This number cannot be greater than the number of nodes. We're going to set it here at 2.|
 | --- |
 		
 > On the NameNode & DataNode (master-namenode) server:
