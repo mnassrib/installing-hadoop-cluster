@@ -604,6 +604,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 		
 ### Configure Hadoop				   
 - Edit the **workers** file on the NameNode (master-namenode) server
+
 | WARNING: The goal here is to configure in particular the working file on the NameNode server (master-namenode). Since this later orchestrates all the DataNode servers, it must know their hostnames by mentioning them in its working file. About the workers files into the slave-datanode-1 and slave-datanode-2 servers, format by leaving them empty.|
 | --- |
 
