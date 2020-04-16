@@ -122,13 +122,11 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 	
 - Generate SSH keys and setup password less SSH between Hadoop services
 		
-``hdpuser@master-namenode:~$ ssh-keygen -t rsa``  ## just press Enter for all choices
+``hdpuser@master-namenode:~$ ssh-keygen -t rsa``  --just press Enter for all choices
 
 ``hdpuser@master-namenode:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys``
 
 ``hdpuser@master-namenode:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub hdpuser@master-namenode``  --(you should be able to ssh without asking for password)
-
-
 
 ``hdpuser@master-namenode:~$ ssh hdpuser@master-namenode``
 
@@ -149,7 +147,6 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 ``hdpuser@master-namenode:~$ sudo chown -R hdpuser:hdpuser /bigdata``
 
 ``hdpuser@master-namenode:~$ sudo chmod -R 770 /bigdata``
-
 
 ## 2- Intall JDK and Hadoop
 > login as hdpuser
@@ -249,13 +246,13 @@ The next tutorial will explain [how to install Spark on Hadoop Yarn Multi-Node C
 		
 ``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData``
 
-``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/namenode``  	*only on the NameNode server*
+``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/namenode``  	--*only on the NameNode server*
 
-``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/datanode``  	*on all the the DataNodes servers*
+``hdpuser@master-namenode:~$ mkdir /bigdata/HadoopData/datanode``  	--*on all the the DataNodes servers*
 	
 - Configure Hadoop
 		
-``hdpuser@master-namenode:~$ cd $HADOOP_CONF_DIR``  # check the environment variables you just added
+``hdpuser@master-namenode:~$ cd $HADOOP_CONF_DIR``  --check the environment variables you just added
 	
 - Modify file: **core-site.xml**
 		
