@@ -575,7 +575,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 			
 > login as hdpuser on "master-namenode" server
 
-- Edit the hosts file of the "master-namenode" server	
+- Edit the hosts file into the "master-namenode" server	
 
 ``hdpuser@master-namenode:~$ vi /etc/hosts``  --your file should look like the below
 			
@@ -604,16 +604,15 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 		
 ### Configure Hadoop				   
 - Edit the **workers** file on the NameNode (master-namenode) server
-		
-``hdpuser@master-namenode:~$ vi workers``  --write line for each DataNode server (in our case all the machines are considered DataNodes)
+| WARNING: The goal here is to configure in particular the working file on the NameNode server (master-namenode). Since this later orchestrates all the DataNode servers, it must know their hostnames by mentioning them in its working file. About the workers files into the slave-datanode-1 and slave-datanode-2 servers, format by leaving them empty.|
+| --- |
+
+``hdpuser@master-namenode:~$ vi workers``  --write line for each DataNode server (in our case all the machines are considered as DataNodes)
 			
-	master-namenode  	#Remove this line from the workers file if you don't want this node to be DataNode
+	master-namenode   #remove this line from the workers file if you don't want this node to be DataNode
 	slave-datanode-1
 	slave-datanode-2
 	
-| WARNING: The most important thing here is to configure in particular the workers file on the NameNode server (master-namenode). Since it orchestrates all the DataNode servers, it needs to know its hostnames by mentioning them in its workers file. Format by leaving empty the workers files of the slave-datanode-1 and slave-datanode-2 servers.|
-| --- |
-
 - Modify file: **hdfs-site.xml**  
 
 | WARNING: If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the **hdfs-site.xml** files of all the nodes. This number cannot be greater than the number of nodes. We're going to set it here at 2.|
