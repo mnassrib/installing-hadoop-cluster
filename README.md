@@ -447,7 +447,9 @@ There are several solutions, unfortunately that are generally paid solutions, to
 	</configuration>
 		
 - Modify file: **hadoop-env.sh**       
-> Edit Hadoop environment file by adding the following environment variables under the section "Set Hadoop-specific environment variables here.":  
+
+| :memo:        | Edit Hadoop environment file by adding the following environment variables under the section "Set Hadoop-specific environment variables here.":       |
+|---------------|:------------------------|
 		
 ``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hadoop-env.sh``  --copy hadoop-env.sh  
 	
