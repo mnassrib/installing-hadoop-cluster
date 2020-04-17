@@ -268,9 +268,6 @@ There are several solutions, unfortunately that are generally paid solutions, to
 		
 - Modify file: **hdfs-site.xml**  
 
-| :exclamation:  The parameter ``dfs.namenode.data.dir`` must be kept only on the NameNode server. If you need DataNode on the NameNode server, set the parameter ``dfs.datanode.data.dir``   |
-|-----------------------------------------|
-
 | :exclamation: | The parameter ``dfs.namenode.data.dir`` must be kept only on the NameNode server. If you need DataNode on the NameNode server, set the parameter ``dfs.datanode.data.dir``       |
 |---------------|:------------------------|
 
