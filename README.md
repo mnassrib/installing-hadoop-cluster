@@ -461,8 +461,8 @@ There are several solutions, unfortunately that are generally paid solutions, to
 - Create **workers** file
 		
 ``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi workers``  --copy workers file
-| WARNING: write line for each DataNode server|
-| --- |
+| :exclamation: | Write line for each DataNode server       |
+|---------------|:------------------------|
 
 	master-namenode 
 	
