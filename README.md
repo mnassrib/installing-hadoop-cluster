@@ -472,7 +472,7 @@ There are several solutions, unfortunately that are generally paid solutions, to
 	
 - Start & Stop Hadoop
 
-| :point_up:    | In principle to start Hadoop, we only need to type ``start-all.sh``. However, I created two aliases ``Start_HADOOP`` and ``Stop_HADOOP`` into the environment variables that will ensure the execution of Hadoop. I created these aliases in order to avoid conflicts with the same commands existing with Spark which will be soon installed on the same machines. The same rules will also be applied with Spark. Once an application is terminated, you need to start running the MapReduce Job History server if you want to see the logs on the Web UI. For this, I added ``mapred --daemon start historyserver`` and ``mapred --daemon stop historyserver`` commands into the two created aliases. |
+| :point_up:    | In principle to start Hadoop, we only need to type ``start-all.sh``. However, I created two aliases ``Start_HADOOP`` and ``Stop_HADOOP`` into the environment variables that will ensure the execution of Hadoop. I created these aliases in order to avoid conflicts with some commands existing with Spark which will be soon installed on the same machines. The same rules will also be applied with Spark. Once an application is terminated, you need to start running the MapReduce Job History Server if you want to see the logs on the Web UI. For this, I added ``mapred --daemon start historyserver`` and ``mapred --daemon stop historyserver`` commands into the two created aliases. |
 |---------------|:------------------------|
 
 ###### Start
