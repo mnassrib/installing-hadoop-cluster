@@ -271,6 +271,9 @@ There are several solutions, unfortunately that are generally paid solutions, to
 | :exclamation:  The parameter ``dfs.namenode.data.dir`` must be kept only on the NameNode server. If you need DataNode on the NameNode server, set the parameter ``dfs.datanode.data.dir``   |
 |-----------------------------------------|
 
+| :exclamation: | The parameter ``dfs.namenode.data.dir`` must be kept only on the NameNode server. If you need DataNode on the NameNode server, set the parameter ``dfs.datanode.data.dir``       |
+|---------------|:------------------------|
+
 ``hdpuser@master-namenode:/bigdata/hadoop-3.1.2/etc/hadoop$ vi hdfs-site.xml``  --copy hdfs-site.xml file
 		
 	<configuration>
