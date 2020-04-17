@@ -7,7 +7,7 @@
 
 > **For the success of the tutorial, we assume that you already have a virtual machine equipped with Linux OS (Debian 9). This should work in principle even with other Linux distributions. You can get Virtualbox to build virtual machines. In order to concept a cluster, you must also have the ability to procure more than one virtual machine.**
 
-To have Linux virtual machines that running your cluster:
+There are several solutions, unfortunately that are generally paid solutions, to procure machines for building a cluster. If you prefer free solutions, I suggest you design your cluster by mounting Linux virtual machines on your local machine. Obviously, this later must have sufficient resources as memory and storage space. If you prefer this solution, follow these steps:
 
 - Download [Oracle Virtualbox][virtualbox].
 - Download [Linux][linux].
@@ -836,6 +836,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 ![stophadoop](https://github.com/mnassrib/installing-hadoop-cluster/blob/master/images/stophadoop.png)
 
+&nbsp;
 
 The next tutorial explains [how to install Spark Standalone and Hadoop Yarn modes on Multi-Node Cluster][nexttuto].
 
