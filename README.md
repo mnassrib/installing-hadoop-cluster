@@ -39,8 +39,6 @@ There are several solutions, unfortunately that are generally paid solutions, to
 
 - Turnoff firewall
 
-``root@debian:~# apt-get install firewalld``  --install firewalld if it is not installed
-
 ``root@debian:~# service firewalld status``
 
 ``root@debian:~# service firewalld stop``
