@@ -235,9 +235,8 @@ There are several solutions, unfortunately that are generally paid solutions, to
 	export HADOOP_CLASSPATH=$HADOOP_CONF_DIR:$HADOOP_COMMON_HOME/*:$HADOOP_COMMON_HOME/lib/*:$HADOOP_HDFS_HOME/*:$HADOOP_HDFS_HOME/lib/*:$HADOOP_MAPRED_HOME/*:$HADOOP_MAPRED_HOME/lib/*:$HADOOP_YARN_HOME/*:$HADOOP_YARN_HOME/lib/*:$HADOOP_CLASSPATH
 	
 	# Control Hadoop
-	alias Start_HADOOP='$HADOOP_HOME/sbin/start-all.sh;mapred --daemon start historyserver'
-	alias Stop_HADOOP='$HADOOP_HOME/sbin/stop-all.sh;mapred --daemon stop historyserver'
-
+	alias Start_HADOOP='$HADOOP_HOME/sbin/start-dfs.sh;start-yarn.sh;mapred --daemon start historyserver'
+	alias Stop_HADOOP='$HADOOP_HOME/sbin/stop-dfs.sh;stop-yarn.sh;mapred --daemon stop historyserver'
 
 ``hdpuser@master-namenode:~$ source .bashrc`` --after save the .bashrc file, load it
 			
