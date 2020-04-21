@@ -607,7 +607,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 | :warning: WARNING          |
 |:---------------------------|
-| The goal here is to configure in particular the workers file into the NameNode server (master-namenode). Since this later orchestrates all the DataNode servers, it must know their hostnames by mentioning them in its workers file. About the workers files into the slave-datanode-1 and slave-datanode-2 servers, format by leaving them empty.     |
+| The goal here is to configure in particular the workers file into the NameNode or master server (here is master-namenode). Since this later orchestrates all the DataNode servers, it must know their hostnames by mentioning them in its workers file. This file is just helper file that are used by hadoop scripts to start appropriate services on master and slave nodes. Add workers file on master node (master-namenode) only. Add just name or ip addresses of master and all slave nodes. If file has an entry for localhost, you can remove that. About the workers files of the slave-datanode-1 and slave-datanode-2 servers, format by leaving them empty.     |
 
 ``hdpuser@master-namenode:~$ vi workers``  --write line for each DataNode server (in our case all the machines are considered as DataNodes)
 			
