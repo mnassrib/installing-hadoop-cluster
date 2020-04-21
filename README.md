@@ -619,7 +619,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 | :warning: WARNING          |
 |:---------------------------|
-| If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the **hdfs-site.xml** files on all the nodes. This number cannot be greater than the number of nodes. We're going to set it here at 2.     |
+| If you need the data to be replicated in more than one DataNode, you must modify the replication number mentioned in the **hdfs-site.xml** files on all the nodes. This number cannot be greater than the number of nodes. We're going to set it here at 2. That means for every file stored in HDFS, there will be one redundant replication of that file on some other node in the cluster.    |
 		
 > On the NameNode & DataNode (master-namenode) server:
 
