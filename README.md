@@ -62,7 +62,7 @@ There are several solutions, unfortunately that are generally paid solutions, to
 ``root@debian:~# vi /etc/hosts``   --your file should look like the below
 
 	127.0.0.1	localhost	
-	192.168.1.72	master-namenode.cluster.hdp		master-namenode
+	192.168.1.72	master-namenode.cluster.hdp 	master-namenode
 			
 > The change will take effect after the next restart – should you want the changes to take place without restarting, the following command will achieve that
 		
@@ -544,7 +544,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 ``root@master-namenode:~# vi /etc/hosts``  --your file should look like the below
 			
 	127.0.0.1	localhost	
-	192.168.1.72	master-namenode.cluster.hdp		master-namenode
+	192.168.1.72	master-namenode.cluster.hdp 	master-namenode
 	192.168.1.73	slave-datanode-1.cluster.hdp	slave-datanode-1
 	192.168.1.74	slave-datanode-2.cluster.hdp	slave-datanode-2
 
@@ -588,9 +588,9 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 ``hdpuser@master-namenode:~$ vi /etc/hosts``  --your file should look like the below
 			
 	127.0.0.1	localhost	
-	192.168.1.72	master-namenode
-	192.168.1.73	slave-datanode-1
-	192.168.1.74	slave-datanode-2
+	192.168.1.72	master-namenode.cluster.hdp 	master-namenode
+	192.168.1.73	slave-datanode-1.cluster.hdp	slave-datanode-1
+	192.168.1.74	slave-datanode-2.cluster.hdp	slave-datanode-2
 
 - Setup password less SSH between Hadoop services
 
