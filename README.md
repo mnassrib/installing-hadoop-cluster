@@ -45,7 +45,7 @@ There are several solutions, unfortunately that are generally paid solutions, to
 
 ``root@debian:~# systemctl disable firewalld``
 
-- Change hostname and setup FQDN (considering a hostname as "master-namenode")
+- Change hostname and setup FQDN (considering a hostname and FQDN as "master-namenode" and "cluster.hdp", respectively)
 
 > Display the hostname which was set during setup in the gridscale panel 
 
@@ -56,11 +56,13 @@ There are several solutions, unfortunately that are generally paid solutions, to
 ``root@debian:~# vi /etc/hostname``   --remove the existing name and write the below
 	
 	master-namenode
+
+> In order to set the Fully Qualified Domain Name (FQDN), the public IP of the server is required, in addition to your own FQDN. 
 			
 ``root@debian:~# vi /etc/hosts``   --your file should look like the below
 
 	127.0.0.1	localhost	
-	192.168.1.72	master-namenode
+	192.168.1.72	master-namenode.cluster.hdp		master-namenode
 			
 > The change will take effect after the next restart – should you want the changes to take place without restarting, the following command will achieve that
 		
@@ -70,15 +72,17 @@ There are several solutions, unfortunately that are generally paid solutions, to
 |:---------------------------|
 | Changing the hostname with the command ``:~# hostname master-namenode`` is only temporary and will be overwritten when rebooted. To make the change permanent, it is necessary to edit the ``/etc/hostname`` file. This is not a replacement for the first step.     |
 
-> Check the command was successful by typing
+> Check the hostname was successfully edited by typing
 
 ``root@debian:~# hostname`` --should return 
 	
 	master-namenode
+
+> The FQDN is verified with this command
 	
 ``root@debian:~# hostname -f`` --should return 
 
-	master-namenode
+	master-namenode.cluster.hdp
 	
 - Create user for Hadoop (considering a hadoop user as "hdpuser")
 > For Debian OS users login as root and do the following:
