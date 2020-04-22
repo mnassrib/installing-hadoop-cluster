@@ -45,7 +45,7 @@ There are several solutions, unfortunately that are generally paid solutions, to
 
 ``root@debian:~# systemctl disable firewalld``
 
-- Change hostname and setup FQDN (considering a hostname and FQDN as "master-namenode" and "cluster.hdp", respectively)
+- Change hostname and setup the Fully Qualified Domain Name (FQDN) (considering hostname and FQDN as ``master-namenode`` and ``cluster.hdp``, respectively)
 
 > Display the hostname which was set during setup in the gridscale panel 
 
@@ -57,7 +57,7 @@ There are several solutions, unfortunately that are generally paid solutions, to
 	
 	master-namenode
 
-> In order to set the Fully Qualified Domain Name (FQDN), the public IP of the server is required, in addition to your own FQDN. 
+> In order to set the Fully Qualified Domain Name, the public IP of the server is required, in addition to your own FQDN 
 			
 ``root@debian:~# vi /etc/hosts``   --your file should look like the below
 
