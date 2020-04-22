@@ -533,20 +533,20 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 ``hdpuser@master-namenode:~$ su root``
 			
-- Edit the hostname and setup FQDN (considering the new hostnames as "slave-datanode-1" and "slave-datanode-2")
+- Edit the hostname and setup FQDN (considering the new hostnames as "slave-datanode-1" and "slave-datanode-2" and keeping the same FQDN)
 
 > On the first cloned machine (slave-datanode-1 server)
 
-``root@master-namenode:~# vi /etc/hostname``  --remove the existing file and write the below
+``root@master-namenode:~# vi /etc/hostname``  --remove the existing name and write the below
 			
 	slave-datanode-1
 			
 ``root@master-namenode:~# vi /etc/hosts``  --your file should look like the below
 			
 	127.0.0.1	localhost	
-	192.168.1.72	master-namenode
-	192.168.1.73	slave-datanode-1
-	192.168.1.74	slave-datanode-2
+	192.168.1.72	master-namenode.cluster.hdp		master-namenode
+	192.168.1.73	slave-datanode-1.cluster.hdp	slave-datanode-1
+	192.168.1.74	slave-datanode-2.cluster.hdp	slave-datanode-2
 
 ``root@master-namenode:~# hostname slave-datanode-1``
 
@@ -556,20 +556,20 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 ``root@master-namenode:~# hostname -f``  --should return 
 
-	slave-datanode-1
+	slave-datanode-1.cluster.hdp
 	
 > On the second cloned machine (slave-datanode-2 server)
 
-``root@master-namenode:~# vi /etc/hostname``  --remove the existing file and write the below
+``root@master-namenode:~# vi /etc/hostname``  --remove the existing name and write the below
 			
 	slave-datanode-2
 			
 ``root@master-namenode:~# vi /etc/hosts``  --your file should look like the below
 			
 	127.0.0.1	localhost	
-	192.168.1.72	master-namenode
-	192.168.1.73	slave-datanode-1
-	192.168.1.74	slave-datanode-2
+	192.168.1.72	master-namenode.cluster.hdp 	master-namenode
+	192.168.1.73	slave-datanode-1.cluster.hdp	slave-datanode-1
+	192.168.1.74	slave-datanode-2.cluster.hdp	slave-datanode-2
 
 ``root@master-namenode:~# hostname slave-datanode-2``
 
@@ -579,7 +579,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 ``root@master-namenode:~# hostname -f``  --should return 
 
-	slave-datanode-2
+	slave-datanode-2.cluster.hdp
 			
 > login as hdpuser on "master-namenode" server
 
