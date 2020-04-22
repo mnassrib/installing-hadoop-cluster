@@ -57,11 +57,10 @@ There are several solutions, unfortunately that are generally paid solutions, to
 	
 	master-namenode
 
-> In order to set the Fully Qualified Domain Name, the public IP of the server is required, in addition to your own FQDN 
+> In order to set the Fully Qualified Domain Name, the public IP of the server is required, in addition to your own FQDN. Comment all the lines present by preceding them with the character ``#`` or removing them and add the following line (by replacing the IP address with the address of the server)
 			
 ``root@debian:~# vi /etc/hosts``   --your file should look like the below
-
-	127.0.0.1	localhost	
+	
 	192.168.1.72	master-namenode.cluster.hdp 	master-namenode
 			
 > The change will take effect after the next restart – should you want the changes to take place without restarting, the following command will achieve that
@@ -543,7 +542,6 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 			
 ``root@master-namenode:~# vi /etc/hosts``  --your file should look like the below
 			
-	127.0.0.1	localhost	
 	192.168.1.72	master-namenode.cluster.hdp 	master-namenode
 	192.168.1.73	slave-datanode-1.cluster.hdp	slave-datanode-1
 	192.168.1.74	slave-datanode-2.cluster.hdp	slave-datanode-2
@@ -565,8 +563,7 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 	slave-datanode-2
 			
 ``root@master-namenode:~# vi /etc/hosts``  --your file should look like the below
-			
-	127.0.0.1	localhost	
+				
 	192.168.1.72	master-namenode.cluster.hdp 	master-namenode
 	192.168.1.73	slave-datanode-1.cluster.hdp	slave-datanode-1
 	192.168.1.74	slave-datanode-2.cluster.hdp	slave-datanode-2
@@ -581,13 +578,14 @@ So far, we have only one machine (master-namenode) that is ready. We have to bui
 
 	slave-datanode-2.cluster.hdp
 			
-> login as hdpuser on "master-namenode" server
+
 
 - Edit the hosts file into the "master-namenode" server	
 
-``hdpuser@master-namenode:~$ vi /etc/hosts``  --your file should look like the below
-			
-	127.0.0.1	localhost	
+> login as hdpuser on "master-namenode" server. Its hosts file must have the same content as the hosts files of the other nodes.
+
+``hdpuser@master-namenode:~$ sudo vi /etc/hosts``  --your file should look like the below
+				
 	192.168.1.72	master-namenode.cluster.hdp 	master-namenode
 	192.168.1.73	slave-datanode-1.cluster.hdp	slave-datanode-1
 	192.168.1.74	slave-datanode-2.cluster.hdp	slave-datanode-2
