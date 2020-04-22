@@ -62,11 +62,15 @@ There are several solutions, unfortunately that are generally paid solutions, to
 	127.0.0.1	localhost	
 	192.168.1.72	master-namenode
 			
-> Type the following
+> The change will take effect after the next restart – should you want the changes to take place without restarting, the following command will achieve that
 		
 ``root@debian:~# hostname master-namenode``
-		
-> To check type
+
+| :warning: WARNING          |
+|:---------------------------|
+| Changing the hostname with the command ``:~# hostname master-namenode`` is only temporary and will be overwritten when rebooted. To make the change permanent, it is necessary to edit the ``/etc/hostname`` file. This is not a replacement for the first step.     |
+
+> Check the command was successful by typing
 
 ``root@debian:~# hostname`` --should return 
 	
