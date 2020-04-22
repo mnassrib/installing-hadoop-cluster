@@ -46,13 +46,14 @@ There are several solutions, unfortunately that are generally paid solutions, to
 ``root@debian:~# systemctl disable firewalld``
 
 - Change hostname and setup FQDN (considering a hostname as "master-namenode")
-> Display the hostname
+
+> Display the hostname which was set during setup in the gridscale panel 
 
 ``root@debian:~# cat /etc/hostname``
 		
-> Edit the hostname
+> Edit the hostname (this can now be changed to any other name – in this example, master-namenode)
 
-``root@debian:~# vi /etc/hostname``   --remove the existing file and write the below
+``root@debian:~# vi /etc/hostname``   --remove the existing name and write the below
 	
 	master-namenode
 			
