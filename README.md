@@ -138,6 +138,19 @@ There are several solutions, unfortunately that are generally paid solutions, to
 ``hdpuser@master-namenode:~$ ssh hdpuser@master-namenode``
 
 	Are you sure you want to continue connecting (yes/no)? yes
+> If you have problem in this step it's because your system uses a different network configuration tool (likely /etc/network/interfaces on older Debian systems). Here’s how to resolve these issues:
+  1) Open the configuration file: ``sudo nano /etc/network/interfaces``
+  2) #### Add this
+	auto enp0s3
+ 	iface enp0s3 inet static
+  	    address 192.168.1.72
+        netmask 255.255.255.0
+	    gateway 192.168.1.1
+        dns-nameservers 8.8.8.8 8.8.4.4
+  3) Apply the changes: ``sudo systemctl restart networking``
+  4) Verify the new IP: ``ip addr show enp0s3``
+  5) Restart SSH: ``sudo systemctl restart ssh``
+  6) Test remote SSH: ``ssh hdpuser@192.168.1.72`` or ``ssh hdpuser@master-namenode``
 	
 ``hdpuser@master-namenode:~$ exit``
 	
