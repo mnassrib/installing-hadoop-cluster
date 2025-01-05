@@ -138,6 +138,7 @@ There are several solutions, unfortunately that are generally paid solutions, to
 ``hdpuser@master-namenode:~$ ssh hdpuser@master-namenode``
 
 	Are you sure you want to continue connecting (yes/no)? yes
+ 
 > If you have problem in this step it's because your system uses a different network configuration tool (likely /etc/network/interfaces on older Debian systems). Here’s how to resolve these issues:
   1) Open the configuration file: ``sudo nano /etc/network/interfaces``
   2) #### Add this
